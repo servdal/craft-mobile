@@ -1,0 +1,42 @@
+    Checking objc2 v0.6.4
+    Checking photocraft-cms v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/cms)
+    Checking photocraft-color v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/color)
+    Checking objc2-core-foundation v0.3.2
+    Checking photocraft-geom v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/geom)
+    Checking photocraft-raster v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/raster)
+    Checking block2 v0.6.2
+    Checking objc2-foundation v0.3.2
+    Checking objc2-core-graphics v0.3.2
+    Checking photocraft-doc v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/doc)
+    Checking objc2-metal v0.3.2
+   Compiling photocraft-text v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/text)
+    Checking photocraft-vector v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/vector)
+    Checking photocraft-codecs v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/codecs)
+    Checking objc2-quartz-core v0.3.2
+    Checking raw-window-metal v1.1.0
+    Checking wgpu-hal v30.0.1
+    Checking photocraft-compose v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/compose)
+    Checking wgpu-core-deps-apple v30.0.1
+    Checking wgpu-core v30.0.1
+    Checking objc2-ui-kit v0.3.2
+    Checking photocraft-psd v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/psd)
+    Checking egui-winit v0.36.2
+    Checking wgpu v30.0.1
+    Checking photocraft-raw v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/raw)
+    Checking photocraft-algo v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/algo)
+    Checking egui-wgpu v0.36.2
+    Checking photocraft-format v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/format)
+    Checking photocraft-affinity v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/affinity)
+    Checking photocraft-paint v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/paint)
+   Compiling photocraft-ui-egui v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/ui-egui)
+    Checking eframe v0.36.2
+    Checking photocraft-plugins v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/plugins)
+    Checking photocraft-ops v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/ops)
+    Checking photocraft-ipp v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/ipp)
+    Checking photocraft-gpu v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/gpu)
+    Checking photocraft-io v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/io)
+    Checking craft-mobile-files v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-files)
+    Checking craft-mobile-shell v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-shell)
+    Checking photocraft-engine v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/crates/engine)
+    Checking photocraft-ios v0.10.0 (/Users/duidev/htdocs/craft-mobile/photocraft/apps/photocraft-ios)
+    Finished `dev` profile [optimized] target(s) in 26.92s

@@ -1,0 +1,44 @@
+{
+  "photocraft": {
+    "source": "/Users/duidev/htdocs/photocraft",
+    "base_commit": "8d2e615ab93d424c4ec25ab15b4edb5368d1f9a6",
+    "mobile_directory": "/Users/duidev/htdocs/craft-mobile/photocraft",
+    "ai_integration_removed": true
+  },
+  "vectorcraft": {
+    "source": "/Users/duidev/htdocs/vectorcraft",
+    "base_commit": "73f40e3fd3fd6957508f18af1bf3bff93a9eb3e7",
+    "mobile_directory": "/Users/duidev/htdocs/craft-mobile/vectorcraft",
+    "ai_integration_removed": true
+  },
+  "pdfcraft": {
+    "source": "/Users/duidev/htdocs/pdfcraft",
+    "base_commit": "50f261d70c8e199600a82dbaa6912c6fbc4b4612",
+    "mobile_directory": "/Users/duidev/htdocs/craft-mobile/pdfcraft",
+    "ai_integration_removed": true
+  },
+  "wordcraft": {
+    "source": "/Users/duidev/htdocs/wordcraft",
+    "base_commit": "2e062168f06da0b5aaa407e09d4c8456eaef6ab0",
+    "mobile_directory": "/Users/duidev/htdocs/craft-mobile/wordcraft",
+    "ai_integration_removed": true
+  },
+  "gridcraft": {
+    "source": "/Users/duidev/htdocs/gridcraft",
+    "base_commit": "c30fa3f1cf324603f3bfc0171689b1d4083b40e5",
+    "mobile_directory": "/Users/duidev/htdocs/craft-mobile/gridcraft",
+    "ai_integration_removed": true
+  },
+  "deckcraft": {
+    "source": "/Users/duidev/htdocs/deckcraft",
+    "base_commit": "22db9261f9d1a214c296fd390173130c45d76d66",
+    "mobile_directory": "/Users/duidev/htdocs/craft-mobile/deckcraft",
+    "ai_integration_removed": true
+  },
+  "cadcraft": {
+    "source": "/Users/duidev/htdocs/cadcraft",
+    "base_commit": "b23d362f6af1dd77e319728f1d85882b098626fe",
+    "mobile_directory": "/Users/duidev/htdocs/craft-mobile/cadcraft",
+    "ai_integration_removed": true
+  }
+}

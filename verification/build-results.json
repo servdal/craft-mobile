@@ -1,0 +1,79 @@
+{
+  "photocraft": {
+    "status": "built",
+    "target": "aarch64-apple-ios-sim",
+    "app": "/Users/duidev/htdocs/craft-mobile/dist/simulator/PhotoCraft.app",
+    "binary_sha256": "6c1f8fd805c4dbbc03370820cc6ec8682881f99fc70e0dea2d9413cbcb918a54",
+    "signature_verified": true,
+    "ipad_startup": true,
+    "iphone_startup": true,
+    "host_clippy": true,
+    "device_installable": false
+  },
+  "vectorcraft": {
+    "status": "built",
+    "target": "aarch64-apple-ios-sim",
+    "app": "/Users/duidev/htdocs/craft-mobile/dist/simulator/VectorCraft.app",
+    "binary_sha256": "4e21361a1ece1f9492fcc5ff14096f0eb3135c6e8c4ed9bebbc465432fc787e8",
+    "signature_verified": true,
+    "ipad_startup": true,
+    "iphone_startup": true,
+    "host_clippy": true,
+    "device_installable": false
+  },
+  "pdfcraft": {
+    "status": "built",
+    "target": "aarch64-apple-ios-sim",
+    "app": "/Users/duidev/htdocs/craft-mobile/dist/simulator/PdfCraft.app",
+    "binary_sha256": "cf9e1c84b5526e160c619044b0cb07fc1f50b039305a44934a3c12fa28160f45",
+    "signature_verified": true,
+    "ipad_startup": true,
+    "iphone_startup": true,
+    "host_clippy": true,
+    "device_installable": false
+  },
+  "wordcraft": {
+    "status": "built",
+    "target": "aarch64-apple-ios-sim",
+    "app": "/Users/duidev/htdocs/craft-mobile/dist/simulator/WordCraft.app",
+    "binary_sha256": "9f40e6497b7fef0ac0683111374f58643afb7a06c64758fbbe82d85fa21b5122",
+    "signature_verified": true,
+    "ipad_startup": true,
+    "iphone_startup": true,
+    "host_clippy": true,
+    "device_installable": false
+  },
+  "gridcraft": {
+    "status": "built",
+    "target": "aarch64-apple-ios-sim",
+    "app": "/Users/duidev/htdocs/craft-mobile/dist/simulator/GridCraft.app",
+    "binary_sha256": "902f8d2ee6c94bd1b69e37df3c3613c46a68a684be9298c074a86e6a4df13bb7",
+    "signature_verified": true,
+    "ipad_startup": true,
+    "iphone_startup": true,
+    "host_clippy": true,
+    "device_installable": false
+  },
+  "deckcraft": {
+    "status": "built",
+    "target": "aarch64-apple-ios-sim",
+    "app": "/Users/duidev/htdocs/craft-mobile/dist/simulator/DeckCraft.app",
+    "binary_sha256": "49e4eb44e80c66d3b0e31c47363acf8c0f63bde06beef76084cca5f58c1c1cc9",
+    "signature_verified": true,
+    "ipad_startup": true,
+    "iphone_startup": true,
+    "host_clippy": true,
+    "device_installable": false
+  },
+  "cadcraft": {
+    "status": "built",
+    "target": "aarch64-apple-ios-sim",
+    "app": "/Users/duidev/htdocs/craft-mobile/dist/simulator/CADCraft.app",
+    "binary_sha256": "8ff7811730052a112cb58a5f8c19d3162b0646ec54095b788d2114b29f217447",
+    "signature_verified": true,
+    "ipad_startup": true,
+    "iphone_startup": true,
+    "host_clippy": true,
+    "device_installable": false
+  }
+}

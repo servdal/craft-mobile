@@ -1,0 +1,35 @@
+    Checking deckcraft-geom v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/geom)
+    Checking deckcraft-color v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/color)
+    Checking deckcraft-bitstream v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/bitstream)
+   Compiling deckcraft-fonts v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/fonts)
+    Checking deckcraft-model v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/model)
+warning: deckcraft-fonts@0.8.0: building without craft-fonts: CRAFT_FONTS_DIR=/Users/duidev/htdocs/craft-mobile/deckcraft/../craft-fonts: /Users/duidev/htdocs/craft-mobile/deckcraft/../craft-fonts/fonts/manifest.txt: No such file or directory (os error 2)
+    Checking wgpu-hal v30.0.1
+    Checking wgpu-core-deps-apple v30.0.1
+    Checking wgpu-core v30.0.1
+    Checking deckcraft-anim v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/anim)
+    Checking deckcraft-text v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/text)
+    Checking deckcraft-metafile v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/metafile)
+    Checking deckcraft-render v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/render)
+    Checking deckcraft-av1 v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/av1)
+    Checking wgpu v30.0.1
+    Checking deckcraft-isobmff v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/isobmff)
+    Checking deckcraft-h264 v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/h264)
+    Checking deckcraft-vp9 v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/vp9)
+    Checking deckcraft-hevc v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/hevc)
+    Checking deckcraft-opus v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/opus)
+    Checking deckcraft-matroska v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/matroska)
+    Checking deckcraft-ogg v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/ogg)
+    Checking deckcraft-pptx v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/pptx)
+    Checking deckcraft-media v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/media)
+    Checking egui-winit v0.36.2
+    Checking egui-wgpu v0.36.2
+    Checking deckcraft-pdf v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/pdf)
+   Compiling deckcraft-ui-egui v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/ui-egui)
+    Checking deckcraft-format v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/format)
+    Checking eframe v0.36.2
+    Checking deckcraft-engine v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/crates/engine)
+    Checking craft-mobile-files v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-files)
+    Checking craft-mobile-shell v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-shell)
+    Checking deckcraft-ios v0.8.0 (/Users/duidev/htdocs/craft-mobile/deckcraft/apps/deckcraft-ios)
+    Finished `dev` profile [optimized] target(s) in 1m 18s

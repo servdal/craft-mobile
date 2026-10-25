@@ -1,0 +1,118 @@
+   Compiling typenum v1.20.1
+   Compiling hybrid-array v0.4.15
+   Compiling cfg-if v1.0.5
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling unicode-ident v1.0.26
+   Compiling crypto-common v0.2.2
+   Compiling libc v0.2.189
+   Compiling syn v3.0.6
+   Compiling block-padding v0.4.2
+   Compiling simd-adler32 v0.3.10
+   Compiling inout v0.2.2
+   Compiling serde_core v1.0.229
+   Compiling adler2 v2.0.1
+   Compiling crc32fast v1.5.2
+   Compiling crossbeam-utils v0.8.23
+   Compiling cipher v0.5.2
+   Compiling block-buffer v0.12.1
+   Compiling crossbeam-epoch v0.9.21
+   Compiling thiserror v2.0.21
+   Compiling const-oid v0.10.2
+   Compiling rustversion v1.0.23
+   Compiling digest v0.11.3
+   Compiling miniz_oxide v0.9.1
+   Compiling cpufeatures v0.3.1
+   Compiling thiserror-impl v2.0.21
+   Compiling autocfg v1.5.1
+   Compiling crossbeam-deque v0.8.8
+   Compiling tinyvec v1.13.3
+   Compiling unicode-normalization v0.1.25
+   Compiling num-traits v0.2.19
+   Compiling flate2 v1.1.10
+   Compiling unicode-properties v0.1.4
+   Compiling rand_core v0.10.1
+   Compiling getrandom v0.4.3
+   Compiling unicode-bidi v0.3.18
+   Compiling cpubits v0.1.1
+   Compiling rayon-core v1.13.0
+   Compiling aes v0.9.3
+   Compiling stringprep v0.1.5
+   Compiling encoding_rs v0.8.42
+   Compiling sha2 v0.11.0
+   Compiling md-5 v0.11.0
+   Compiling zmij v1.0.23
+   Compiling core-foundation-sys v0.8.7
+   Compiling memchr v2.8.3
+   Compiling alloc-no-stdlib v2.0.4
+   Compiling alloc-stdlib v0.2.4
+   Compiling iana-time-zone v0.1.65
+   Compiling chacha20 v0.10.2
+   Compiling multiversion_no_op v1.0.0
+   Compiling winnow v1.0.4
+   Compiling itoa v1.0.18
+   Compiling bitflags v2.13.2
+   Compiling equivalent v1.0.2
+   Compiling simdutf8 v0.1.5
+   Compiling either v1.18.0
+   Compiling scopeguard v1.2.0
+   Compiling hashbrown v0.17.1
+   Compiling anyhow v1.0.104
+   Compiling serde v1.0.229
+   Compiling serde_json v1.0.151
+   Compiling indexmap v2.14.2
+   Compiling rayon v1.12.0
+   Compiling toml_parser v1.1.3+spec-1.1.0
+   Compiling rand v0.10.3
+   Compiling chrono v0.4.45
+   Compiling brotli-decompressor v5.0.3
+   Compiling nom v8.0.0
+   Compiling pdfcraft-crypt v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/crypt)
+   Compiling pdfcraft-filters v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/filters)
+   Compiling serde_spanned v1.1.1
+   Compiling toml_datetime v1.1.1+spec-1.1.0
+   Compiling ecb v0.2.1
+   Compiling cbc v0.2.1
+   Compiling miniz_oxide v0.8.9
+   Compiling fdeflate v0.3.7
+   Compiling serde_derive v1.0.229
+   Compiling rangemap v1.8.0
+   Compiling weezl v0.2.1
+   Compiling log v0.4.34
+   Compiling toml_writer v1.1.2+spec-1.1.0
+   Compiling toml v1.1.6+spec-1.1.0
+   Compiling lopdf v0.45.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/vendor/lopdf)
+   Compiling png v0.18.1
+   Compiling pdfcraft-cos v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/cos)
+   Compiling pdfcraft-oracle v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/oracle)
+   Compiling xtask v0.1.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/xtask)
+    Finished `test` profile [optimized] target(s) in 2m 40s
+     Running unittests src/main.rs (/Users/duidev/Documents/Codex/2026-10-25/craft-ios/test-target/debug/deps/xtask-6cb6ca74eb798f64)
+
+running 8 tests
+test layers::tests::cos_may_use_only_its_listed_foundation ... ok
+test layers::tests::unregistered_crate_is_error ... ok
+test layers::tests::listed_sideways_edges_allowed ... ok
+test layers::tests::current_graph_shape_passes ... ok
+test layers::tests::upward_and_sideways_edges_flagged ... ok
+test layers::tests::test_support_only_as_dev_dependency ... ok
+test layers::tests::ui_crates_below_l7_flagged ... ok
+test layers::tests::apps_exempt ... FAILED
+
+failures:
+
+---- layers::tests::apps_exempt stdout ----
+
+thread 'layers::tests::apps_exempt' (5740042) panicked at xtask/src/layers.rs:354:13:
+assertion failed: check(&[c(app,
+                        &[("egui", Normal, false),
+                                    ("pdfcraft-ui-egui", Normal, true)])]).is_empty()
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+
+failures:
+    layers::tests::apps_exempt
+
+test result: FAILED. 7 passed; 1 failed; 0 ignored; 0 measured; 41 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p xtask --bin xtask`

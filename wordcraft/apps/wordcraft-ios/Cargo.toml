@@ -1,0 +1,13 @@
+[package]
+name = "wordcraft-ios"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+[lints]
+workspace = true
+[dependencies]
+wordcraft-engine = { workspace = true }
+wordcraft-ui-egui = { workspace = true }
+wordcraft-doc = { workspace = true }
+craft-mobile-shell = { path = "../../../mobile-shell" }

@@ -1,0 +1,11 @@
+    Blocking waiting for file lock on artifact directory
+   Compiling craft-mobile-layer-gate v0.1.0 (/Users/duidev/htdocs/craft-mobile/tools/layer-gate)
+    Finished `dev` profile [unoptimized] target(s) in 2.70s
+     Running `/Users/duidev/Documents/Codex/2026-10-25/craft-ios/test-target/debug/craft-mobile-layer-gate`
+photocraft: architecture PASS
+vectorcraft: architecture PASS
+pdfcraft: architecture PASS
+wordcraft: architecture PASS
+gridcraft: architecture PASS
+deckcraft: architecture PASS
+cadcraft: architecture PASS

@@ -1,0 +1,12 @@
+[package]
+name = "deckcraft-ios"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+[lints]
+workspace = true
+[dependencies]
+deckcraft-engine = { workspace = true }
+deckcraft-ui-egui = { workspace = true }
+craft-mobile-shell = { path = "../../../mobile-shell" }

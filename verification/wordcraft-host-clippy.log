@@ -1,0 +1,25 @@
+    Checking wordcraft-geom v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/geom)
+   Compiling wordcraft-fonts v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/fonts)
+    Checking wordcraft-doc v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/doc)
+    Checking wgpu-hal v30.0.1
+    Checking wordcraft-proof v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/proof)
+    Checking wgpu-core-deps-apple v30.0.1
+    Checking wordcraft-metafile v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/metafile)
+    Checking wgpu-core v30.0.1
+    Checking wordcraft-layout v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/layout)
+    Checking wordcraft-docx v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/docx)
+    Checking wgpu v30.0.1
+    Checking wordcraft-formats v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/formats)
+    Checking wordcraft-pdf v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/pdf)
+    Checking wordcraft-render v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/render)
+    Checking wordcraft-docbin v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/docbin)
+    Checking egui-winit v0.36.2
+    Checking wordcraft-engine v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/engine)
+    Checking egui-wgpu v0.36.2
+   Compiling wordcraft-ui-egui v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/ui-egui)
+    Checking eframe v0.36.2
+    Checking craft-mobile-files v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-files)
+    Checking craft-mobile-shell v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-shell)
+    Checking wordcraft-zotero v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/crates/zotero)
+    Checking wordcraft-ios v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/apps/wordcraft-ios)
+    Finished `dev` profile [optimized] target(s) in 42.47s

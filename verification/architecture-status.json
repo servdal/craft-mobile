@@ -1,0 +1,13 @@
+{
+  "method": "Compile and test exact upstream xtask/src/layers.rs modules; validate each cargo metadata graph",
+  "module_tests_passed": 77,
+  "projects": {
+    "photocraft": "pass",
+    "vectorcraft": "pass",
+    "pdfcraft": "pass",
+    "wordcraft": "pass",
+    "gridcraft": "pass",
+    "deckcraft": "pass",
+    "cadcraft": "pass"
+  }
+}

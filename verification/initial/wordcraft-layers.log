@@ -1,0 +1,29 @@
+   Compiling xtask v0.8.0 (/Users/duidev/htdocs/craft-mobile/wordcraft/xtask)
+    Finished `dev` profile [optimized] target(s) in 3.82s
+     Running `/Users/duidev/Documents/Codex/2026-10-25/craft-ios/test-target/debug/xtask layers`
+Dependency layering (plan/architecture.md §3)
+
+crate                        layer          workspace deps
+wordcraft                    exempt         control-key, doc, engine, fonts, proof, ui-egui
+wordcraft-cli                exempt         doc, engine, mcp, render, zotero
+wordcraft-control-key        L0 standalone  
+wordcraft-doc                L1             geom
+wordcraft-docbin             L2             doc, geom
+wordcraft-docx               L2             doc, geom
+wordcraft-engine             L4             doc, docbin, docx, fonts, formats, geom, layout, pdf, proof, render
+wordcraft-fonts              L1             
+wordcraft-formats            L2             doc, geom
+wordcraft-geom               L0             
+wordcraft-ios                L7             craft-mobile-shell, doc, engine, ui-egui
+wordcraft-layout             L2             doc, fonts, geom, proof
+wordcraft-mcp                L5             control-key, doc, engine, render
+wordcraft-metafile           L1             
+wordcraft-pdf                L3             doc, fonts, geom, layout, metafile
+wordcraft-proof              L1             
+wordcraft-render             L3             doc, fonts, geom, layout, metafile
+wordcraft-ui-egui            L6             doc, engine, fonts, geom, layout, render, zotero
+wordcraft-web                exempt         doc, engine, fonts, ui-egui
+wordcraft-zotero             L5             doc, engine, formats, docx (dev)
+xtask                        exempt         
+
+OK: 21 crates, no layering violations.

@@ -1,0 +1,74 @@
+    Checking pdfcraft-crypt v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/crypt)
+    Checking pdfcraft-filters v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/filters)
+    Checking objc2 v0.6.4
+    Checking pdfcraft-cos v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/cos)
+   Compiling pdfcraft-fonts v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/fonts)
+    Checking objc2-core-foundation v0.3.2
+    Checking pdfcraft-model v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/model)
+    Checking objc2-foundation v0.3.2
+    Checking pdfcraft-content v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/content)
+    Checking block2 v0.6.2
+    Checking objc2-core-graphics v0.3.2
+    Checking pdfcraft-annot v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/annot)
+    Checking objc2-metal v0.3.2
+    Checking aws-lc-sys v0.45.0
+    Checking webbrowser v1.2.4
+    Checking pdfcraft-edit v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/edit)
+    Checking objc2-ui-kit v0.3.2
+    Checking objc2-quartz-core v0.3.2
+    Checking raw-window-metal v1.1.0
+    Checking wgpu-hal v30.0.1
+    Checking pdfcraft-forms v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/forms)
+    Checking egui-winit v0.36.2
+    Checking wgpu-core-deps-apple v30.0.1
+    Checking wgpu-core v30.0.1
+    Checking aws-lc-rs v1.18.1
+    Checking pdfcraft-xfa v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/xfa)
+    Checking pdfcraft-print v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/print)
+    Checking pdfcraft-sign v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/sign)
+    Checking pdfcraft-redact v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/redact)
+    Checking wgpu v30.0.1
+    Checking pdfcraft-ocr v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/ocr)
+    Checking pdfcraft-render v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/render)
+   Compiling pdfcraft-ui-egui v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/ui-egui)
+    Checking egui-wgpu v0.36.2 (/Users/duidev/htdocs/craft-mobile/pdfcraft/vendor/egui-wgpu)
+    Checking eframe v0.36.2
+    Checking pdfcraft-js v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/js)
+    Checking pdfcraft-xfdf v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/xfdf)
+    Checking pdfcraft-audit v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/audit)
+    Checking pdfcraft-create v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/create)
+    Checking craft-mobile-files v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-files)
+    Checking pdfcraft-optimize v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/optimize)
+    Checking pdfcraft-measure v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/measure)
+    Checking pdfcraft-organize v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/organize)
+    Checking pdfcraft-preflight v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/preflight)
+    Checking pdfcraft-a11y v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/a11y)
+    Checking pdfcraft-export v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/export)
+    Checking pdfcraft-compare v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/compare)
+    Checking pdfcraft-geom v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/geom)
+    Checking pdfcraft-engine v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/engine)
+    Checking pdfcraft-platform v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/crates/platform)
+    Checking craft-mobile-shell v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-shell)
+warning: function `clipboard_dir` is never used
+  --> crates/ui-egui/src/image_pick.rs:75:4
+   |
+75 | fn clipboard_dir() -> Option<std::path::PathBuf> {
+   |    ^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `is_copied_image_name` is never used
+  --> crates/ui-egui/src/image_pick.rs:93:4
+   |
+93 | fn is_copied_image_name(name: &str) -> bool {
+   |    ^^^^^^^^^^^^^^^^^^^^
+
+warning: function `write_clipboard_file` is never used
+   --> crates/ui-egui/src/image_pick.rs:108:4
+    |
+108 | fn write_clipboard_file(dir: &std::path::Path, name: &str, bytes: &[u8]) -> Result<std::path::PathBuf, String> {
+    |    ^^^^^^^^^^^^^^^^^^^^
+
+warning: `pdfcraft-ui-egui` (lib) generated 3 warnings
+    Checking pdfcraft-ios v0.9.0 (/Users/duidev/htdocs/craft-mobile/pdfcraft/apps/pdfcraft-ios)
+    Finished `dev` profile [optimized] target(s) in 20.12s

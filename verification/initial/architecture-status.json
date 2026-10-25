@@ -1,0 +1,30 @@
+{
+  "photocraft": {
+    "layer-tests": 0,
+    "layers": 0
+  },
+  "vectorcraft": {
+    "layer-tests": 0,
+    "layers": 0
+  },
+  "pdfcraft": {
+    "layer-tests": 101,
+    "layers": 1
+  },
+  "wordcraft": {
+    "layer-tests": 0,
+    "layers": 0
+  },
+  "gridcraft": {
+    "layer-tests": 0,
+    "layers": 0
+  },
+  "deckcraft": {
+    "layer-tests": 0,
+    "layers": 0
+  },
+  "cadcraft": {
+    "layer-tests": 0,
+    "layers": 0
+  }
+}

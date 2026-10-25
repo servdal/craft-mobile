@@ -1,0 +1,42 @@
+    Checking vectorcraft-geom v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/geom)
+    Checking objc2 v0.6.4
+    Checking vectorcraft-color v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/color)
+    Checking objc2-core-foundation v0.3.2
+    Checking objc2-foundation v0.3.2
+    Checking vectorcraft-doc v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/doc)
+   Compiling vectorcraft-text v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/text)
+    Checking vectorcraft-pathops v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/pathops)
+    Checking vectorcraft-three-d v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/three-d)
+    Checking block2 v0.6.2
+    Checking objc2-metal v0.3.2
+    Checking vectorcraft-plugins v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/plugins)
+    Checking objc2-core-graphics v0.3.2
+    Checking vectorcraft-effects v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/effects)
+    Checking objc2-quartz-core v0.3.2
+    Checking vectorcraft-brush v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/brush)
+    Checking raw-window-metal v1.1.0
+    Checking wgpu-hal v30.0.1
+    Checking vectorcraft-pdf v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/pdf)
+    Checking wgpu-core-deps-apple v30.0.1
+    Checking wgpu-core v30.0.1
+    Checking vectorcraft-render v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/render)
+    Checking vectorcraft-metafile v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/metafile)
+    Checking objc2-ui-kit v0.3.2
+    Checking wgpu v30.0.1
+    Checking vectorcraft-svg v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/svg)
+    Checking egui-wgpu v0.36.2
+    Checking egui-winit v0.36.2
+    Checking vectorcraft-eps v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/eps)
+   Compiling vectorcraft-ui-egui v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/ui-egui)
+    Checking vectorcraft-affinity v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/affinity)
+    Checking vectorcraft-tools v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/tools)
+    Checking vectorcraft-cad v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/cad)
+    Checking vectorcraft-format v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/format)
+    Checking vectorcraft-trace v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/trace)
+    Checking vectorcraft-scriptcheck v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/scriptcheck)
+    Checking eframe v0.36.2
+    Checking vectorcraft-engine v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/crates/engine)
+    Checking craft-mobile-files v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-files)
+    Checking craft-mobile-shell v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-shell)
+    Checking vectorcraft-ios v0.13.1 (/Users/duidev/htdocs/craft-mobile/vectorcraft/apps/vectorcraft-ios)
+    Finished `dev` profile [optimized] target(s) in 1m 12s

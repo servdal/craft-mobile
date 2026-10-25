@@ -1,0 +1,92 @@
+     Locking 11 packages to latest Rust 1.95.0 compatible versions
+    Blocking waiting for file lock on artifact directory
+   Compiling zmij v1.0.23
+   Compiling serde_core v1.0.229
+   Compiling serde_json v1.0.151
+   Compiling memchr v2.8.3
+   Compiling itoa v1.0.18
+   Compiling craft-mobile-layer-gate v0.1.0 (/Users/duidev/htdocs/craft-mobile/tools/layer-gate)
+    Finished `test` profile [unoptimized] target(s) in 30.64s
+     Running unittests src/main.rs (/Users/duidev/Documents/Codex/2026-10-25/craft-ios/test-target/debug/deps/craft_mobile_layer_gate-abbd7d8e7de1ecc1)
+
+running 77 tests
+test cadcraft::tests::self_dev_dependency_ignored ... ok
+test cadcraft::tests::apps_and_xtask_exempt ... ok
+test cadcraft::tests::testkit_only_as_dev_dependency ... ok
+test cadcraft::tests::upward_dependency_flagged ... ok
+test cadcraft::tests::sideways_dependency_flagged ... ok
+test cadcraft::tests::unregistered_crate_is_error ... ok
+test cadcraft::tests::l0_foundation_chain_allowed_one_way ... ok
+test cadcraft::tests::clean_downward_graph_passes ... ok
+test cadcraft::tests::metadata_parsing ... ok
+test cadcraft::tests::ui_crates_below_l6_flagged ... ok
+test cadcraft::tests::upward_dev_dependency_flagged ... ok
+test deckcraft::tests::apps_and_xtask_exempt ... ok
+test deckcraft::tests::clean_downward_graph_passes ... ok
+test deckcraft::tests::l0_foundations_are_independent ... ok
+test deckcraft::tests::self_dev_dependency_ignored ... ok
+test deckcraft::tests::metadata_parsing ... ok
+test deckcraft::tests::sideways_dependency_flagged ... ok
+test deckcraft::tests::testkit_only_as_dev_dependency ... ok
+test deckcraft::tests::ui_crates_below_l6_flagged ... ok
+test deckcraft::tests::unregistered_crate_is_error ... ok
+test deckcraft::tests::upward_dependency_flagged ... ok
+test deckcraft::tests::upward_dev_dependency_flagged ... ok
+test gridcraft::tests::apps_and_xtask_exempt ... ok
+test gridcraft::tests::clean_downward_graph_passes ... ok
+test gridcraft::tests::format_crate_limited_to_core_formula_model ... ok
+test gridcraft::tests::intra_layer_chains_allowed_one_way ... ok
+test gridcraft::tests::self_dev_dependency_ignored ... ok
+test gridcraft::tests::metadata_parsing ... ok
+test gridcraft::tests::sideways_dependency_flagged ... ok
+test gridcraft::tests::ui_crates_below_l6_flagged ... ok
+test gridcraft::tests::unregistered_crate_is_error ... ok
+test gridcraft::tests::upward_dependency_flagged ... ok
+test gridcraft::tests::upward_dev_dependency_flagged ... ok
+test pdfcraft::tests::apps_exempt ... ok
+test pdfcraft::tests::cos_may_use_only_its_listed_foundation ... ok
+test pdfcraft::tests::current_graph_shape_passes ... ok
+test pdfcraft::tests::listed_sideways_edges_allowed ... ok
+test pdfcraft::tests::test_support_only_as_dev_dependency ... ok
+test pdfcraft::tests::ui_crates_below_l7_flagged ... ok
+test pdfcraft::tests::unregistered_crate_is_error ... ok
+test pdfcraft::tests::upward_and_sideways_edges_flagged ... ok
+test photocraft::tests::apps_and_xtask_exempt ... ok
+test photocraft::tests::clean_downward_graph_passes ... ok
+test photocraft::tests::l0_foundation_chain_allowed_one_way ... ok
+test photocraft::tests::self_dev_dependency_ignored ... ok
+test photocraft::tests::metadata_parsing ... ok
+test photocraft::tests::sideways_dependency_flagged ... ok
+test photocraft::tests::standalone_crates_have_no_workspace_deps ... ok
+test photocraft::tests::standalone_exception_is_exactly_codecs_to_heif ... ok
+test photocraft::tests::standalone_is_usable_from_higher_layers ... ok
+test photocraft::tests::testkit_only_as_dev_dependency ... ok
+test photocraft::tests::ui_crates_below_l6_flagged ... ok
+test photocraft::tests::unregistered_crate_is_error ... ok
+test photocraft::tests::upward_dependency_flagged ... ok
+test photocraft::tests::upward_dev_dependency_flagged ... ok
+test vectorcraft::tests::apps_and_xtask_exempt ... ok
+test vectorcraft::tests::clean_downward_graph_passes ... ok
+test vectorcraft::tests::l0_foundation_chain_allowed_one_way ... ok
+test vectorcraft::tests::metadata_parsing ... ok
+test vectorcraft::tests::self_dev_dependency_ignored ... ok
+test vectorcraft::tests::sideways_dependency_flagged ... ok
+test vectorcraft::tests::testkit_only_as_dev_dependency ... ok
+test vectorcraft::tests::ui_crates_below_l6_flagged ... ok
+test vectorcraft::tests::unregistered_crate_is_error ... ok
+test vectorcraft::tests::upward_dependency_flagged ... ok
+test vectorcraft::tests::upward_dev_dependency_flagged ... ok
+test wordcraft::tests::apps_and_xtask_exempt ... ok
+test wordcraft::tests::clean_downward_graph_passes ... ok
+test wordcraft::tests::l0_foundation_chain_allowed_one_way ... ok
+test wordcraft::tests::self_dev_dependency_ignored ... ok
+test wordcraft::tests::metadata_parsing ... ok
+test wordcraft::tests::sideways_dependency_flagged ... ok
+test wordcraft::tests::testkit_only_as_dev_dependency ... ok
+test wordcraft::tests::ui_crates_below_l6_flagged ... ok
+test wordcraft::tests::unregistered_crate_is_error ... ok
+test wordcraft::tests::upward_dependency_flagged ... ok
+test wordcraft::tests::upward_dev_dependency_flagged ... ok
+
+test result: ok. 77 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

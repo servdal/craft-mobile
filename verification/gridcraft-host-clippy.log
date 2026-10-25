@@ -1,0 +1,31 @@
+    Checking objc2 v0.6.5
+    Checking gridcraft-core v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/core)
+    Checking gridcraft-formula v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/formula)
+    Checking objc2-core-foundation v0.3.2
+    Checking block2 v0.6.2
+    Checking gridcraft-model v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/model)
+    Checking objc2-foundation v0.3.2
+    Checking objc2-core-graphics v0.3.2
+    Checking gridcraft-functions v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/functions)
+    Checking objc2-metal v0.3.2
+    Checking gridcraft-numfmt v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/numfmt)
+    Checking gridcraft-calc v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/calc)
+    Checking objc2-ui-kit v0.3.2
+    Checking objc2-quartz-core v0.3.2
+    Checking gridcraft-xlsx v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/xlsx)
+    Checking raw-window-metal v1.1.0
+    Checking wgpu-hal v30.0.1
+    Checking wgpu-core-deps-apple v30.0.1
+    Checking wgpu-core v30.0.1
+    Checking egui-winit v0.36.2
+    Checking gridcraft-chart v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/chart)
+   Compiling gridcraft-ui-egui v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/ui-egui)
+    Checking gridcraft-pdf v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/pdf)
+    Checking gridcraft-engine v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/engine)
+    Checking wgpu v30.0.1
+    Checking egui-wgpu v0.36.2
+    Checking eframe v0.36.2
+    Checking craft-mobile-files v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-files)
+    Checking craft-mobile-shell v0.1.0 (/Users/duidev/htdocs/craft-mobile/mobile-shell)
+    Checking gridcraft-ios v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/apps/gridcraft-ios)
+    Finished `dev` profile [optimized] target(s) in 22.10s

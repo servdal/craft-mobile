@@ -1,0 +1,23 @@
+{
+  "photocraft": {
+    "clean": true
+  },
+  "vectorcraft": {
+    "clean": true
+  },
+  "pdfcraft": {
+    "clean": true
+  },
+  "wordcraft": {
+    "clean": true
+  },
+  "gridcraft": {
+    "clean": true
+  },
+  "deckcraft": {
+    "clean": true
+  },
+  "cadcraft": {
+    "clean": true
+  }
+}

@@ -1,0 +1,84 @@
+   Compiling proc-macro2 v1.0.107
+   Compiling quote v1.0.47
+   Compiling typenum v1.20.1
+   Compiling hybrid-array v0.4.15
+   Compiling syn v3.0.6
+   Compiling serde_core v1.0.229
+   Compiling cfg-if v1.0.5
+   Compiling memchr v2.8.3
+   Compiling thiserror v2.0.21
+   Compiling libc v0.2.190
+   Compiling thiserror-impl v2.0.21
+   Compiling serde_derive v1.0.229
+   Compiling crypto-common v0.2.2
+   Compiling simd-adler32 v0.3.10
+   Compiling serde v1.0.229
+   Compiling crc32fast v1.5.2
+   Compiling cpufeatures v0.3.1
+   Compiling gridcraft-core v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/core)
+   Compiling block-buffer v0.12.1
+   Compiling adler2 v2.0.1
+   Compiling digest v0.11.3
+   Compiling miniz_oxide v0.9.1
+   Compiling aho-corasick v1.1.5
+   Compiling regex-syntax v0.8.11
+   Compiling zlib-rs v0.6.8
+   Compiling log v0.4.34
+   Compiling autocfg v1.5.1
+   Compiling num-traits v0.2.19
+   Compiling flate2 v1.1.10
+   Compiling regex-automata v0.4.18
+   Compiling sha2 v0.11.0
+   Compiling gridcraft-formula v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/formula)
+   Compiling gridcraft-model v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/model)
+   Compiling regex v1.13.1
+   Compiling inout v0.2.2
+   Compiling equivalent v1.0.2
+   Compiling hashbrown v0.17.1
+   Compiling bumpalo v3.20.3
+   Compiling zopfli v0.8.3
+   Compiling indexmap v2.14.2
+   Compiling cipher v0.5.2
+   Compiling gridcraft-functions v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/functions)
+   Compiling miniz_oxide v0.8.9
+   Compiling gridcraft-numfmt v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/numfmt)
+   Compiling fdeflate v0.3.7
+   Compiling zune-core v0.5.3
+   Compiling bitflags v2.13.2
+   Compiling cpubits v0.1.1
+   Compiling pxfm v0.1.30
+   Compiling moxcms v0.8.1
+   Compiling aes v0.9.3
+   Compiling png v0.18.1
+   Compiling zune-jpeg v0.5.15
+   Compiling gridcraft-calc v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/calc)
+   Compiling zip v3.0.0
+   Compiling sha1 v0.11.0
+   Compiling quick-xml v0.41.0
+   Compiling bytemuck v1.25.2
+   Compiling byteorder-lite v0.1.0
+   Compiling image v0.25.10
+   Compiling serde_json v1.0.151
+   Compiling gridcraft-xlsx v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/xlsx)
+   Compiling gridcraft-chart v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/chart)
+   Compiling gridcraft-pdf v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/pdf)
+   Compiling gridcraft-engine v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/crates/engine)
+   Compiling xtask v0.8.0 (/Users/duidev/htdocs/craft-mobile/gridcraft/xtask)
+    Finished `test` profile [optimized] target(s) in 3m 13s
+     Running unittests src/main.rs (/Users/duidev/Documents/Codex/2026-10-25/craft-ios/test-target/debug/deps/xtask-3b007e9ff5067903)
+
+running 11 tests
+test layers::tests::unregistered_crate_is_error ... ok
+test layers::tests::upward_dependency_flagged ... ok
+test layers::tests::intra_layer_chains_allowed_one_way ... ok
+test layers::tests::format_crate_limited_to_core_formula_model ... ok
+test layers::tests::sideways_dependency_flagged ... ok
+test layers::tests::self_dev_dependency_ignored ... ok
+test layers::tests::apps_and_xtask_exempt ... ok
+test layers::tests::clean_downward_graph_passes ... ok
+test layers::tests::ui_crates_below_l6_flagged ... ok
+test layers::tests::metadata_parsing ... ok
+test layers::tests::upward_dev_dependency_flagged ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 13 filtered out; finished in 0.00s
+
