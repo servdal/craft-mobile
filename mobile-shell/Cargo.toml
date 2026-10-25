@@ -5,6 +5,7 @@ edition = "2024"
 license = "MIT OR Apache-2.0"
 [workspace]
 [dependencies]
+mobile-ui = { package = "craft-mobile-ui", path = "../mobile-ui" }
 egui = "=0.36.2"
 eframe = { version = "=0.36.2", default-features = false, features = ["wgpu", "default_fonts"] }
 serde_json = "1"

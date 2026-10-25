@@ -9,6 +9,7 @@ description = "DeckCraft egui frontend (PowerPoint-style UI); swappable — noth
 workspace = true
 
 [dependencies]
+mobile-ui = { package = "craft-mobile-ui", path = "../../../mobile-ui" }
 deckcraft-geom = { workspace = true }
 deckcraft-color = { workspace = true }
 deckcraft-model = { workspace = true }

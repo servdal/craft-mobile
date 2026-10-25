@@ -8,6 +8,7 @@ license.workspace = true
 workspace = true
 
 [dependencies]
+mobile-ui = { package = "craft-mobile-ui", path = "../../../mobile-ui" }
 craft-print = { workspace = true }
 craft-ui = { workspace = true }
 photocraft-geom = { workspace = true }

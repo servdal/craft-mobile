@@ -39,6 +39,7 @@ struct Mobile<E> {
     status: String,
     title: &'static str,
     extension: &'static str,
+    show_desktop_tools: bool,
 }
 impl<E: Editor> eframe::App for Mobile<E> {
     fn logic(&mut self, ctx: &egui::Context, frame: &mut eframe::Frame) {
@@ -85,10 +86,66 @@ impl<E: Editor> eframe::App for Mobile<E> {
         );
         content.set_clip_rect(bounds);
         let ui = &mut content;
+        let naturally_compact = mobile_ui::compact_size(
+            bounds.size(),
+            false,
+            mobile_ui::is_phone(ui.ctx()),
+        );
+        let compact = naturally_compact && !self.show_desktop_tools;
+        mobile_ui::set_phone(ui.ctx(), compact);
         egui::Panel::top("mobile-file-actions").show(ui, |ui| {
-            ui.horizontal_wrapped(|ui| {
-                ui.strong(self.title);
-                if ui.button("New").clicked() {
+            if compact {
+                ui.horizontal(|ui| {
+                    ui.strong(self.title.trim_end_matches(" Mobile"));
+                    if ui.add_sized([56.0, mobile_ui::TOUCH_HEIGHT], egui::Button::new("New")).clicked() {
+                        if let Err(e) = guarded(|| self.editor.command("file.new", serde_json::json!({}))) {
+                            self.status = e;
+                        }
+                    }
+                    if ui.add_sized([64.0, mobile_ui::TOUCH_HEIGHT], egui::Button::new("Open")).clicked() {
+                        pick(&self.actions, false, "");
+                    }
+                    ui.menu_button("Menu", |ui| {
+                        if mobile_ui::button(ui, "Choose from Photos").clicked() {
+                            let actions = self.actions.clone();
+                            files::request(files::Mode::Photos, "", move |path| {
+                                if let Some(path) = path {
+                                    actions.lock().unwrap_or_else(PoisonError::into_inner).push((
+                                        "mobile.photoImported".into(),
+                                        serde_json::json!({"path":path.to_string_lossy()}),
+                                    ));
+                                }
+                            });
+                            ui.close();
+                        }
+                        if mobile_ui::button(ui, "Save to Photos").clicked() {
+                            let actions = self.actions.clone();
+                            files::request(files::Mode::SavePhotos, "", move |path| {
+                                if path.is_some() {
+                                    actions.lock().unwrap_or_else(PoisonError::into_inner).push(("mobile.photosSaved".into(), serde_json::json!({})));
+                                }
+                            });
+                            ui.close();
+                        }
+                        if mobile_ui::button(ui, "Save As File").clicked() {
+                            pick(&self.actions, true, &format!("Untitled.{}", self.extension));
+                            ui.close();
+                        }
+                        if mobile_ui::button(ui, "Export to Files").clicked() {
+                            files::request(files::Mode::Export, "", |_| {});
+                            ui.close();
+                        }
+                        ui.separator();
+                        if mobile_ui::button(ui, "Show desktop tools").clicked() {
+                            self.show_desktop_tools = true;
+                            ui.close();
+                        }
+                    });
+                });
+            } else {
+                ui.horizontal_wrapped(|ui| {
+                    ui.strong(self.title);
+                    if ui.button("New").clicked() {
                     if let Err(e) =
                         guarded(|| self.editor.command("file.new", serde_json::json!({})))
                     {
@@ -129,7 +186,11 @@ impl<E: Editor> eframe::App for Mobile<E> {
                 if ui.button("Save As").clicked() {
                     pick(&self.actions, true, &format!("Untitled.{}", self.extension));
                 }
-            });
+                if naturally_compact && ui.button("Phone layout").clicked() {
+                    self.show_desktop_tools = false;
+                }
+                });
+            }
             if !self.status.is_empty() {
                 ui.label(&self.status);
                 if ui.small_button("Dismiss").clicked() {
@@ -219,6 +280,7 @@ pub fn run<E: Editor + 'static>(
                 status,
                 title,
                 extension,
+                show_desktop_tools: false,
             }))
         }),
     )

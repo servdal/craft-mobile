@@ -616,21 +616,26 @@ impl CadApp {
 
     fn draw(&mut self, ui: &mut egui::Ui) {
         let t0 = now_ms();
+        let phone = mobile_ui::is_phone(ui.ctx());
         control::begin_frame(ui.ctx());
         let t = theme::Tokens::get();
-        chrome::title_and_toolbar(self, ui);
-        if self.ui.in_window_menu {
+        if !phone {
+            chrome::title_and_toolbar(self, ui);
+        }
+        if !phone && self.ui.in_window_menu {
             menus::menu_bar(self, ui);
         }
-        if self.ui.show_status_bar {
+        if !phone && self.ui.show_status_bar {
             chrome::status_bar(self, ui);
         }
-        if self.ui.show_file_tabs {
+        if !phone && self.ui.show_file_tabs {
             chrome::file_tabs(self, ui);
         }
         let has_doc = !self.session.docs.is_empty() && !self.ui.start_tab;
         egui::CentralPanel::default().frame(egui::Frame::NONE.fill(t.canvas)).show(ui, |ui| {
-            if has_doc {
+            if has_doc && phone {
+                canvas::show(self, ui);
+            } else if has_doc {
                 docking::show(self, ui);
             } else {
                 chrome::start_page(self, ui);

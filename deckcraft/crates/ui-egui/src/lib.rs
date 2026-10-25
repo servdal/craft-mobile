@@ -1778,6 +1778,7 @@ impl SlideApp {
             return;
         }
         let t0 = now_ms();
+        let phone = mobile_ui::is_phone(&ctx);
         let t = theme::Tokens::get(&ctx);
         self.tick_media(&ctx);
         eyedropper::tick(self, &ctx);
@@ -1792,8 +1793,10 @@ impl SlideApp {
         self.sync_backstage();
         self.keyboard(&ctx);
         self.sync_backstage();
-        ribbon::title_bar(self, ui);
-        if self.backstage.is_none() && self.session.active().is_some() {
+        if !phone {
+            ribbon::title_bar(self, ui);
+        }
+        if !phone && self.backstage.is_none() && self.session.active().is_some() {
             ribbon::show(self, ui);
             status::status_bar(self, ui);
         }
@@ -1810,7 +1813,9 @@ impl SlideApp {
             if self.session.active().is_none() {
                 return;
             }
-            match self.ui.view {
+            if phone {
+                canvas::show(self, ui);
+            } else { match self.ui.view {
                 ViewMode::Sorter => sorter::show(self, ui),
                 ViewMode::NotesPage => sorter::notes_page(self, ui),
                 ViewMode::Outline | ViewMode::Normal | ViewMode::Reading => {
@@ -1829,7 +1834,7 @@ impl SlideApp {
                         canvas::show(self, ui);
                     });
                 }
-            }
+            }}
         });
         toast::note_missing_fonts(self);
         toast::show(self, &ctx);

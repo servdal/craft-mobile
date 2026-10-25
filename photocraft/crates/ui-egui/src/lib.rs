@@ -2031,7 +2031,7 @@ impl eframe::App for PhotocraftApp {
         // The OS title bar (and the taskbar / Alt-Tab entry) follows the active file; with the
         // system title bar this is where the document name lives, as the in-app title is hidden.
         panels::sync_window_title(self, &ctx);
-        let chrome = !self.ui.view.hides_chrome();
+        let chrome = !mobile_ui::is_phone(&ctx) && !self.ui.view.hides_chrome();
         if chrome && self.ui.panels.menu_bar {
             panels::title_bar(self, ui);
         }
