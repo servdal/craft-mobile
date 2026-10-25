@@ -123,3 +123,5 @@ Files copied into `corpus/` by hand (tiff, exr, raw) must be MIT, BSD or CC0.
 ## Mobile launcher mascot (2026-10-25)
 
 The iOS icon in `../assets/launcher/photocraft-1024.png` is derived from the mascot supplied by @servdal (`mascotonly.png`) at their explicit request. Pose variation generated with the built-in OpenAI image generation tool. User-provided artwork; used with the owner’s authorization for this application family. No additional redistribution license is asserted. Full prompts and references are in `../assets/launcher/README.md`.
+
+- `apps/photocraft-ios/tests/fixtures/import.png`: original synthetic 8×8 solid-color PNG fixture for mobile import regression testing; generated for this project, MIT OR Apache-2.0 (repository licenses). Contains no personal photos or third-party artwork.

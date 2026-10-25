@@ -68,3 +68,7 @@ Generated-in-code assets are original and have no file to list:
 | `crates/ui-egui/src/i18n/it.tsv` | Emanuele Bottelli (AI-assisted) | Original Italian translations of CADCraft English strings | MIT OR Apache-2.0 (`LICENSE-MIT`, `LICENSE-APACHE`) | No proprietary localization resources copied |
 | `crates/ui-egui/src/i18n/ko.tsv` | @huk082 (AI-assisted) | Original Korean translations of CADCraft English strings | MIT OR Apache-2.0 (`LICENSE-MIT`, `LICENSE-APACHE`) | No proprietary localization resources copied; no font assets added |
 | `crates/ui-egui/src/i18n/ar.tsv` | @hasan-sdaif | Original Arabic translations of CADCraft English strings | MIT OR Apache-2.0 (`LICENSE-MIT`, `LICENSE-APACHE`) | No proprietary localization resources copied |
+
+## Mobile launcher mascot (2026-10-25)
+
+The iOS icon in `../assets/launcher/cadcraft-1024.png` is derived from the mascot supplied by @servdal (`mascotonly.png`) at their explicit request. Pose variation generated with the built-in OpenAI image generation tool. User-provided artwork; used with the owner’s authorization for this application family. No additional redistribution license is asserted. Full prompts and references are in `../assets/launcher/README.md`.

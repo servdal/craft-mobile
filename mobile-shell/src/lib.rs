@@ -45,6 +45,27 @@ impl<E: Editor> eframe::App for Mobile<E> {
         let actions =
             std::mem::take(&mut *self.actions.lock().unwrap_or_else(PoisonError::into_inner));
         for (id, p) in actions {
+            if id == "mobile.photosSaved" {
+                self.status = "Image saved to Photos.".into();
+                continue;
+            }
+            if id == "mobile.photoImported" {
+                let path = p["path"].as_str().unwrap_or_default();
+                let command = match self.extension {
+                    "pcraft" => Some("file.open"),
+                    "vectorcraft" => Some("file.place"),
+                    "docx" | "xlsx" | "pptx" => Some("insert.picture"),
+                    _ => None,
+                };
+                self.status = match command {
+                    Some(command) => match guarded(|| self.editor.command(command, serde_json::json!({"path":path,"link":false}))) {
+                        Ok(()) => "Photo imported.".into(),
+                        Err(error) => format!("Photo copied to Documents, but the editor could not insert it: {error}"),
+                    },
+                    None => "Photo copied to Documents/Imports. This editor does not yet insert photos from the mobile toolbar.".into(),
+                };
+                continue;
+            }
             if let Err(e) = guarded(|| self.editor.command(&id, p)) {
                 self.status = e;
             }
@@ -77,6 +98,31 @@ impl<E: Editor> eframe::App for Mobile<E> {
                 if ui.button("Open").clicked() {
                     pick(&self.actions, false, "");
                 }
+                if ui.button("Photos").clicked() {
+                    let actions = self.actions.clone();
+                    files::request(files::Mode::Photos, "", move |path| {
+                        if let Some(path) = path {
+                            actions
+                                .lock()
+                                .unwrap_or_else(PoisonError::into_inner)
+                                .push((
+                                    "mobile.photoImported".into(),
+                                    serde_json::json!({"path":path.to_string_lossy()}),
+                                ));
+                        }
+                    });
+                }
+                if ui.button("Save to Photos").clicked() {
+                    let actions = self.actions.clone();
+                    files::request(files::Mode::SavePhotos, "", move |path| {
+                        if path.is_some() {
+                            actions
+                                .lock()
+                                .unwrap_or_else(PoisonError::into_inner)
+                                .push(("mobile.photosSaved".into(), serde_json::json!({})));
+                        }
+                    });
+                }
                 if ui.button("Export to Files").clicked() {
                     files::request(files::Mode::Export, "", |_| {});
                 }
@@ -102,9 +148,9 @@ pub fn run<E: Editor + 'static>(
     extension: &'static str,
     create: impl FnOnce(&eframe::CreationContext<'_>, Actions) -> E + 'static,
 ) -> eframe::Result<()> {
-    if std::env::consts::OS != "ios" {
+    if !matches!(std::env::consts::OS, "ios" | "android") {
         return Err(eframe::Error::AppCreation(
-            "This mobile host requires an iOS target. Use packaging/ios/build.py.".into(),
+            "This mobile host requires an iOS or Android target. Use the matching packaging helper.".into(),
         ));
     }
     let _ = log::set_logger(&STARTUP_LOG);
@@ -127,9 +173,38 @@ pub fn run<E: Editor + 'static>(
         });
     }
     let actions = Actions::default();
+    #[cfg(debug_assertions)]
+    if std::env::var_os("CRAFT_MOBILE_QA_OPEN").is_some() {
+        pick(&actions, false, "");
+    }
+
+    #[cfg(debug_assertions)]
+    if std::env::var_os("CRAFT_MOBILE_QA_PHOTOS").is_some() {
+        let actions = actions.clone();
+        files::request(files::Mode::Photos, "", move |path| {
+            if let Some(path) = path {
+                actions
+                    .lock()
+                    .unwrap_or_else(PoisonError::into_inner)
+                    .push((
+                        "mobile.photoImported".into(),
+                        serde_json::json!({"path":path.to_string_lossy()}),
+                    ));
+            }
+        });
+    }
+    #[cfg(target_os = "android")]
+    let android_app = ANDROID_APP
+        .lock()
+        .unwrap_or_else(PoisonError::into_inner)
+        .clone();
     eframe::run_native(
         title,
         eframe::NativeOptions {
+            #[cfg(target_os = "android")]
+            android_app,
+            #[cfg(target_os = "android")]
+            run_and_return: false,
             renderer: eframe::Renderer::Wgpu,
             wgpu_options: gpu,
             ..Default::default()
@@ -174,3 +249,13 @@ impl log::Log for StartupLog {
     fn flush(&self) {}
 }
 static STARTUP_LOG: StartupLog = StartupLog;
+
+#[cfg(target_os = "android")]
+pub use android_activity::AndroidApp;
+#[cfg(target_os = "android")]
+static ANDROID_APP: Mutex<Option<AndroidApp>> = Mutex::new(None);
+#[cfg(target_os = "android")]
+pub fn init_android(app: AndroidApp) {
+    files::init_android(app.clone());
+    *ANDROID_APP.lock().unwrap_or_else(PoisonError::into_inner) = Some(app);
+}

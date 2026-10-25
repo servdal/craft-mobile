@@ -19,8 +19,15 @@ for project in args.projects:
  executable=app/title;shutil.copy2(args.target_dir/target/profile/(project+'-ios'),executable);executable.chmod(0o755)
  if b'CraftSceneDelegate\0' not in executable.read_bytes():
   results[project]={'status':'failed','reason':'Scene lifecycle adapter is missing; rebuild after updating mobile-shell'};print('FAILED lifecycle adapter',project,flush=True);continue
- info={'CFBundleExecutable':title,'CFBundleIdentifier':'com.duidev.craftmobile.'+project,'CFBundleName':title,'CFBundleDisplayName':title,'CFBundlePackageType':'APPL','CFBundleVersion':'1','CFBundleShortVersionString':'0.1.0','LSRequiresIPhoneOS':True,'MinimumOSVersion':'16.0','UIDeviceFamily':[1,2],'UISupportedInterfaceOrientations':['UIInterfaceOrientationPortrait','UIInterfaceOrientationLandscapeLeft','UIInterfaceOrientationLandscapeRight'],'UISupportedInterfaceOrientations~ipad':['UIInterfaceOrientationPortrait','UIInterfaceOrientationPortraitUpsideDown','UIInterfaceOrientationLandscapeLeft','UIInterfaceOrientationLandscapeRight'],'UILaunchScreen':{},'UIFileSharingEnabled':True,'LSSupportsOpeningDocumentsInPlace':True}
+ info={'CFBundleExecutable':title,'CFBundleIdentifier':'com.duidev.craftmobile.'+project,'CFBundleName':title,'CFBundleDisplayName':title,'CFBundlePackageType':'APPL','CFBundleVersion':'4','CFBundleShortVersionString':'0.1.2','LSRequiresIPhoneOS':True,'MinimumOSVersion':'16.0','UIDeviceFamily':[1,2],'UISupportedInterfaceOrientations':['UIInterfaceOrientationPortrait','UIInterfaceOrientationLandscapeLeft','UIInterfaceOrientationLandscapeRight'],'UISupportedInterfaceOrientations~ipad':['UIInterfaceOrientationPortrait','UIInterfaceOrientationPortraitUpsideDown','UIInterfaceOrientationLandscapeLeft','UIInterfaceOrientationLandscapeRight'],'UILaunchScreen':{},'UIFileSharingEnabled':True,'LSSupportsOpeningDocumentsInPlace':True}
+ info['NSPhotoLibraryAddUsageDescription']=title+' menyimpan gambar yang Anda pilih ke galeri Photos.'
  info['UIApplicationSceneManifest']={'UIApplicationSupportsMultipleScenes':False,'UISceneConfigurations':{'UIWindowSceneSessionRoleApplication':[{'UISceneConfigurationName':'Craft Mobile','UISceneDelegateClassName':'CraftSceneDelegate'}]}}
+ with (app/'Info.plist').open('wb') as f:plistlib.dump(info,f)
+ # Build platform-native asset catalogs, including every required iPhone/iPad icon size.
+ catalog=root/'packaging/ios/Assets'/(project+'.xcassets')
+ partial=dist/(project+'-icons.plist')
+ subprocess.run(['xcrun','actool','--compile',str(app),'--platform','iphoneos' if args.device else 'iphonesimulator','--minimum-deployment-target','16.0','--app-icon','AppIcon','--output-partial-info-plist',str(partial),'--target-device','iphone','--target-device','ipad','--product-type','com.apple.product-type.application',str(catalog)],check=True,stdout=subprocess.DEVNULL)
+ with partial.open('rb') as f:info.update(plistlib.load(f))
  with (app/'Info.plist').open('wb') as f:plistlib.dump(info,f)
  # Bundle source notices; do not add system fonts or model/runtime assets.
  licenses=app/'Licenses';licenses.mkdir(exist_ok=True)

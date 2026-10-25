@@ -1,0 +1,26 @@
+[package]
+name = "wordcraft-android"
+version = "0.1.2"
+edition = "2024"
+license = "MIT OR Apache-2.0"
+publish = false
+[workspace]
+[lib]
+name = "wordcraft_android"
+crate-type = ["cdylib"]
+[dependencies]
+wordcraft-engine = { path = "../../wordcraft/crates/engine" }
+wordcraft-ui-egui = { path = "../../wordcraft/crates/ui-egui" }
+wordcraft-doc = { path = "../../wordcraft/crates/doc" }
+craft-mobile-shell = { path = "../../mobile-shell" }
+
+[patch.crates-io]
+krilla = { git = "https://github.com/storytold/craft-libs", rev = "c3487320b2d1de657b860b3c8abb44e1f2b32bd8" }
+
+[profile.release]
+opt-level = 2
+lto = false
+codegen-units = 16
+debug = 0
+strip = "debuginfo"
+panic = "unwind"

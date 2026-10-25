@@ -500,6 +500,7 @@ pub fn progress_notice(app: &PdfCraftApp, ctx: &egui::Context) -> bool {
 }
 
 /// The ArtCraft wordmark (Storyteller's brand, docs/brand/; not open source), sized to `height`.
+#[cfg(not(target_os = "android"))]
 pub fn artcraft_logo(ui: &mut egui::Ui, height: f32) -> Response {
     let dark = ui.visuals().dark_mode;
     let (uri, bytes): (&str, &'static [u8]) = if dark {
@@ -511,12 +512,25 @@ pub fn artcraft_logo(ui: &mut egui::Ui, height: f32) -> Response {
 }
 
 /// The ArtCraft mark (brand blue, works on light and dark), `size` points square.
+#[cfg(not(target_os = "android"))]
 pub fn artcraft_mark(ui: &mut egui::Ui, size: f32) -> Response {
     ui.add(
         egui::Image::from_bytes("bytes://artcraft-mark.svg", include_bytes!("../../../docs/brand/artcraft-mark.svg"))
             .fit_to_exact_size(vec2(size, size))
             .alt_text("ArtCraft"),
     )
+}
+
+// The upstream brand license requires modified distributions to remove its marks.
+// Android uses neutral text; it does not embed or redraw the trademark artwork.
+#[cfg(target_os = "android")]
+pub fn artcraft_logo(ui: &mut egui::Ui, height: f32) -> Response {
+    ui.label(egui::RichText::new("PdfCraft").strong().size(height))
+}
+
+#[cfg(target_os = "android")]
+pub fn artcraft_mark(ui: &mut egui::Ui, size: f32) -> Response {
+    ui.add_sized(vec2(size, size), egui::Label::new(egui::RichText::new("PDF").strong().size(size * 0.4)))
 }
 
 /// Buttons for every community link (`pdfcraft_engine::links`), Discord first and prominent.

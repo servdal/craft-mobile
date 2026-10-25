@@ -5,3 +5,12 @@ dist/
 .DS_Store
 __pycache__/
 *.pyc
+
+# Private local release signing material (never commit)
+*.jks
+*.keystore
+key.properties
+key.info
+local.properties
+.gradle/
+**/jniLibs/

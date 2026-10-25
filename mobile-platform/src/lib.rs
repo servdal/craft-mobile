@@ -12,6 +12,8 @@ mod ios {
     use std::ffi::{CStr, CString, c_char};
     unsafe extern "C" {
         fn craft_documents_open() -> bool;
+        fn craft_photos_open() -> bool;
+        fn craft_photos_save(path: *const c_char) -> bool;
         fn craft_documents_export(path: *const c_char) -> bool;
         fn craft_documents_poll() -> *mut c_char;
         fn craft_documents_free(value: *mut c_char);
@@ -22,6 +24,24 @@ mod ios {
             Ok(())
         } else {
             Err("Another Files operation is open".into())
+        }
+    }
+    pub fn photos_open() -> Result<(), String> {
+        // SAFETY: no borrowed inputs; native code schedules picker presentation on the main queue.
+        if unsafe { craft_photos_open() } {
+            Ok(())
+        } else {
+            Err("Another document operation is open".into())
+        }
+    }
+    pub fn photos_save(path: &Path) -> Result<(), String> {
+        let value =
+            CString::new(path.to_string_lossy().as_bytes()).map_err(|_| "Invalid file name")?;
+        // SAFETY: native copies the NUL-terminated path before returning; Photos completes asynchronously.
+        if unsafe { craft_photos_save(value.as_ptr()) } {
+            Ok(())
+        } else {
+            Err("Another document operation is open".into())
         }
     }
     pub fn export(path: &Path) -> Result<(), String> {
@@ -59,16 +79,38 @@ mod ios {
     }
 }
 #[cfg(target_os = "ios")]
-pub use ios::{export, open, poll};
-#[cfg(not(target_os = "ios"))]
+pub use ios::{export, open, photos_open, photos_save, poll};
+#[cfg(not(any(target_os = "ios", target_os = "android")))]
 pub fn open() -> Result<(), String> {
     Err("Files picker requires iOS".into())
 }
-#[cfg(not(target_os = "ios"))]
+#[cfg(not(any(target_os = "ios", target_os = "android")))]
 pub fn export(_path: &Path) -> Result<(), String> {
     Err("Files export requires iOS".into())
 }
-#[cfg(not(target_os = "ios"))]
+#[cfg(not(any(target_os = "ios", target_os = "android")))]
 pub fn poll() -> Option<Selection> {
     None
+}
+
+#[cfg(not(any(target_os = "ios", target_os = "android")))]
+pub fn photos_open() -> Result<(), String> {
+    Err("Photos picker requires iOS".into())
+}
+#[cfg(not(any(target_os = "ios", target_os = "android")))]
+pub fn photos_save(_path: &Path) -> Result<(), String> {
+    Err("Saving to Photos requires iOS".into())
+}
+
+#[cfg(target_os = "android")]
+mod android;
+#[cfg(target_os = "android")]
+pub use android::{export, init_android, open, photos_open, photos_save, poll};
+pub fn documents_directory() -> Result<Option<PathBuf>, String> {
+    #[cfg(target_os = "android")]
+    {
+        return android::documents().map(Some);
+    }
+    #[cfg(not(target_os = "android"))]
+    Ok(None)
 }

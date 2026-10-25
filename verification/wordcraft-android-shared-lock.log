@@ -1,0 +1,14 @@
+     Locking 12 packages to latest Rust 1.95.0 compatible versions
+      Adding cesu8 v1.1.0
+      Adding jni v0.21.1
+ Downgrading tokio v1.53.2 -> v1.53.1
+      Adding windows-sys v0.45.0
+      Adding windows-targets v0.42.2
+      Adding windows_aarch64_gnullvm v0.42.2
+      Adding windows_aarch64_msvc v0.42.2
+      Adding windows_i686_gnu v0.42.2
+      Adding windows_i686_msvc v0.42.2
+      Adding windows_x86_64_gnu v0.42.2
+      Adding windows_x86_64_gnullvm v0.42.2
+      Adding windows_x86_64_msvc v0.42.2
+note: pass `--verbose` to see 13 unchanged dependencies behind latest

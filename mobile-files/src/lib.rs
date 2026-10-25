@@ -13,6 +13,8 @@ pub enum Mode {
     Save,
     Folder,
     Export,
+    Photos,
+    SavePhotos,
 }
 pub struct Request {
     pub mode: Mode,
@@ -45,6 +47,10 @@ pub fn request(
         });
 }
 pub fn documents() -> Result<PathBuf, String> {
+    if let Some(path) = craft_mobile_platform::documents_directory()? {
+        std::fs::create_dir_all(&path).map_err(|error| error.to_string())?;
+        return path.canonicalize().map_err(|error| error.to_string());
+    }
     let home = std::env::var_os("HOME").ok_or("Application sandbox is unavailable")?;
     let p = PathBuf::from(home).join("Documents");
     std::fs::create_dir_all(&p).map_err(|e| e.to_string())?;
@@ -124,6 +130,10 @@ pub struct Browser {
 impl Browser {
     pub fn new() -> Result<Self, String> {
         let root = documents()?;
+        let projects = root.join("Projects");
+        if !projects.exists() {
+            std::fs::create_dir_all(&projects).map_err(|error| error.to_string())?;
+        }
         Ok(Self {
             folder: root.clone(),
             root,
@@ -140,7 +150,13 @@ impl Browser {
                 .lock()
                 .unwrap_or_else(PoisonError::into_inner)
                 .pop_front();
-            if let Some(p) = &self.pending {
+            if let Some(p) = &mut self.pending {
+                if matches!(p.mode, Mode::Photos | Mode::SavePhotos) {
+                    p.extensions = ["png", "jpg", "jpeg", "heic", "heif"]
+                        .into_iter()
+                        .map(str::to_owned)
+                        .collect();
+                }
                 if let Some(dir) = &p.initial {
                     if let Ok(actual) = confined(dir, false) {
                         if actual.is_dir() {
@@ -155,9 +171,14 @@ impl Browser {
                     .into();
                 self.error.clear();
                 self.replace = false;
-                #[cfg(target_os = "ios")]
-                if p.mode == Mode::Open {
-                    match craft_mobile_platform::open() {
+                #[cfg(any(target_os = "ios", target_os = "android"))]
+                if matches!(p.mode, Mode::Open | Mode::Photos) {
+                    let opened = if p.mode == Mode::Photos {
+                        craft_mobile_platform::photos_open()
+                    } else {
+                        craft_mobile_platform::open()
+                    };
+                    match opened {
                         Ok(()) => self.native_pending = true,
                         Err(e) => self.error = e,
                     }
@@ -203,11 +224,20 @@ impl Browser {
             ui.heading(title);
             ui.label(if mode == Mode::Export {
                 "Choose a saved document to export to Files."
+            } else if mode == Mode::SavePhotos {
+                "Choose a saved PNG, JPEG or HEIC image to add to Photos."
             } else {
                 "Documents saved in this app."
             });
-            if mode == Mode::Open && ui.button("Browse Files…").clicked() {
+            if matches!(mode, Mode::Open | Mode::Photos) && ui.button("Browse Files…").clicked() {
                 match craft_mobile_platform::open() {
+                    Ok(()) => self.native_pending = true,
+                    Err(e) => self.error = e,
+                }
+            }
+            if matches!(mode, Mode::Open | Mode::Photos) && ui.button("Browse Photos…").clicked()
+            {
+                match craft_mobile_platform::photos_open() {
                     Ok(()) => self.native_pending = true,
                     Err(e) => self.error = e,
                 }
@@ -306,10 +336,15 @@ impl Browser {
             ui.colored_label(egui::Color32::from_rgb(185, 45, 45), &self.error);
             cancel = ui.button("Cancel").clicked();
         });
-        if mode == Mode::Export
+        if matches!(mode, Mode::Export | Mode::SavePhotos)
             && let Some(path) = chosen.take()
         {
-            match craft_mobile_platform::export(&path) {
+            let operation = if mode == Mode::SavePhotos {
+                craft_mobile_platform::photos_save(&path)
+            } else {
+                craft_mobile_platform::export(&path)
+            };
+            match operation {
                 Ok(()) => self.native_pending = true,
                 Err(e) => self.error = e,
             }
@@ -476,3 +511,6 @@ mod filesystem_tests {
         Ok(())
     }
 }
+
+#[cfg(target_os = "android")]
+pub use craft_mobile_platform::init_android;

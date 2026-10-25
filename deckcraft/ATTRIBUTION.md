@@ -75,3 +75,7 @@ is copied into this repository. The licence text is in `licenses/pdf-writer/LICE
 | `krilla 0.8.2 / icc/sGrey-v4.icc` | Clinton Ingram (Compact ICC Profiles) | https://github.com/LaurenzV/krilla/blob/3ffdf0588cf98050aad6edba51ca70162e1fb5b5/crates/krilla/icc/sGrey-v4.icc | CC0-1.0 | `00c0f94e09127520a17dc0e1d9264b5702081d96dbdb1549ee88e3631ce42a9d` | PDF export colour profiles |
 | `krilla 0.8.2 / icc/sRGB-v2-magic.icc` | Clinton Ingram (Compact ICC Profiles) | https://github.com/LaurenzV/krilla/blob/3ffdf0588cf98050aad6edba51ca70162e1fb5b5/crates/krilla/icc/sRGB-v2-magic.icc | CC0-1.0 | `af4efe28f6d311799865f325ba39184a2e978b113ca74124d60af7de22b105f4` | PDF export colour profiles |
 | `krilla 0.8.2 / icc/sRGB-v4.icc` | Clinton Ingram (Compact ICC Profiles) | https://github.com/LaurenzV/krilla/blob/3ffdf0588cf98050aad6edba51ca70162e1fb5b5/crates/krilla/icc/sRGB-v4.icc | CC0-1.0 | `c56e1685d888f5edb92fe07f2750f387f8fe8e91b32ff8fb0b56bfbbb9458353` | PDF export colour profiles |
+
+## Mobile launcher mascot (2026-10-25)
+
+The iOS icon in `../assets/launcher/deckcraft-1024.png` is derived from the mascot supplied by @servdal (`mascotonly.png`) at their explicit request. Pose variation generated with the built-in OpenAI image generation tool. User-provided artwork; used with the owner’s authorization for this application family. No additional redistribution license is asserted. Full prompts and references are in `../assets/launcher/README.md`.

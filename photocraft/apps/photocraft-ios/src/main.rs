@@ -1,7 +1,7 @@
 #![forbid(unsafe_code)]
 use craft_mobile_shell::{self as mobile, eframe, egui, files, serde_json};
 use photocraft_ui_egui::{FileDialogAnswer, FileDialogRequest, PhotocraftApp, Services};
-struct Editor(PhotocraftApp);
+struct Editor(PhotocraftApp, egui::Context);
 impl mobile::Editor for Editor {
     fn logic(&mut self, c: &egui::Context, f: &mut eframe::Frame) {
         eframe::App::logic(&mut self.0, c, f);
@@ -10,7 +10,7 @@ impl mobile::Editor for Editor {
         eframe::App::ui(&mut self.0, u, f);
     }
     fn command(&mut self, id: &str, p: serde_json::Value) -> Result<(), String> {
-        self.0.run(id, p).map(|_| ())
+        photocraft_ui_egui::menus::invoke(&mut self.0, &self.1, id, p).map(|_| ())
     }
 }
 fn main() -> eframe::Result<()> {
@@ -44,6 +44,31 @@ fn main() -> eframe::Result<()> {
         if let Some(rs) = &cc.wgpu_render_state {
             app.set_wgpu(rs.clone());
         }
-        Editor(app)
+        Editor(app, cc.egui_ctx.clone())
     })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use craft_mobile_shell::Editor as _;
+
+    #[test]
+    fn mobile_open_routes_through_ui_file_import() {
+        let services = Services {
+            import: Some(Box::new(|name, bytes, depth| {
+                photocraft_io::import_with_svg_group_depth(name, bytes, depth).map(|r| (r.document, r.warnings)).map_err(|e| e.to_string())
+            })),
+            ..Default::default()
+        };
+        let mut editor = Editor(PhotocraftApp::new(photocraft_engine::Session::new(), services), egui::Context::default());
+        let folder = std::env::temp_dir().join(format!("craft-photo-import-check-{}", std::process::id()));
+        std::fs::create_dir_all(&folder).unwrap();
+        let path = folder.join("Photo.png");
+        std::fs::write(&path, include_bytes!("../tests/fixtures/import.png")).unwrap();
+        editor.command("file.open", serde_json::json!({"path":path.to_string_lossy()})).unwrap();
+        assert_eq!(editor.0.session.documents().len(), 1);
+        assert_eq!(editor.0.session.active().unwrap().doc.name, "Photo.png");
+        std::fs::remove_dir_all(folder).unwrap();
+    }
 }

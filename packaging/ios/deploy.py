@@ -99,11 +99,20 @@ def main():
                                 DTPlatformVersion=sdk_version)
                     (stage / 'Info.plist').write_bytes(plistlib.dumps(info))
                     shutil.copy2(args.profile, stage / 'embedded.mobileprovision')
-                    signed_entitlements = {'application-identifier': application_id,
-                                           'com.apple.developer.team-identifier': team,
-                                           'get-task-allow': bool(entitlements.get('get-task-allow', False))}
-                    if any(fnmatch.fnmatchcase(application_id, group) for group in entitlements.get('keychain-access-groups', [])):
-                        signed_entitlements['keychain-access-groups'] = [application_id]
+                    template = ROOT / project / 'packaging/ios/entitlements.plist'
+                    signed_entitlements = plistlib.loads(template.read_bytes())
+                    substitutions = {'$(AppIdentifierPrefix)': team+'.', '$(CFBundleIdentifier)': bundle, '$(DEVELOPMENT_TEAM)': team}
+                    def expand(value):
+                        if isinstance(value, str):
+                            for key, replacement in substitutions.items(): value=value.replace(key,replacement)
+                            return value
+                        if isinstance(value, list): return [expand(item) for item in value]
+                        return value
+                    signed_entitlements = {key:expand(value) for key,value in signed_entitlements.items()}
+                    signed_entitlements['get-task-allow'] = bool(entitlements.get('get-task-allow',False))
+                    for key in signed_entitlements:
+                        if key not in entitlements: raise RuntimeError('Entitlement not authorized by selected profile: '+key)
+                    (destination/(project+'-entitlements.plist')).write_bytes(plistlib.dumps(signed_entitlements))
                     entitlement_file = Path(temporary) / 'entitlements.plist'
                     entitlement_file.write_bytes(plistlib.dumps(signed_entitlements))
                     run(['codesign', '--force', '--sign', identity, '--timestamp=none',

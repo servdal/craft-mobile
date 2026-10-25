@@ -7,7 +7,7 @@
 
 #![deny(clippy::unwrap_used, clippy::expect_used, clippy::panic, clippy::unimplemented, clippy::todo, clippy::unreachable)]
 
-#[cfg(target_os = "ios")]
+#[cfg(any(target_os = "ios", target_os = "android"))]
 extern crate mobile_rfd as rfd;
 
 /// Whether `a` and `b` name the same file: equal, or equal once made absolute against the
@@ -3039,7 +3039,7 @@ impl eframe::App for PdfCraftApp {
         }
         self.guard_quit(ctx);
         // macOS: quit through `terminate:` instead of dropping the window (Touch Bar crash, #1136).
-        #[cfg(not(target_os = "ios"))]
+        #[cfg(not(any(target_os = "ios", target_os = "android")))]
         craft_quit::on_close_request(ctx);
         let now = ctx.input(|i| i.time);
         self.autosave_tick(now);

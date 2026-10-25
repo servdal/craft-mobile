@@ -57,7 +57,7 @@ pub enum Clip {
 }
 
 /// An image on the system clipboard, or else its text.
-#[cfg(all(not(target_arch = "wasm32"), not(target_os = "ios")))]
+#[cfg(all(not(target_arch = "wasm32"), not(any(target_os = "ios", target_os = "android"))))]
 fn read_clipboard() -> Option<Clip> {
     let mut cb = arboard::Clipboard::new().ok()?;
     if let Ok(img) = cb.get_image() {
@@ -110,9 +110,9 @@ impl PdfCraftApp {
 
     /// Create ▸ Clipboard: a new document from the image (one page, its size) or the text on
     /// the clipboard, as Acrobat does.
-    #[cfg(target_os = "ios")]
-    pub(crate) fn create_from_clipboard(&mut self) { self.notify_tr("System clipboard import is unavailable on iOS. Open a document from Files instead."); }
-    #[cfg(not(target_os = "ios"))]
+    #[cfg(any(target_os = "ios", target_os = "android"))]
+    pub(crate) fn create_from_clipboard(&mut self) { self.notify_tr("System clipboard import is unavailable on mobile. Open a document from Files instead."); }
+    #[cfg(not(any(target_os = "ios", target_os = "android")))]
     pub(crate) fn create_from_clipboard(&mut self) {
         #[cfg(not(target_arch = "wasm32"))]
         let clip = read_clipboard();

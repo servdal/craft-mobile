@@ -12,5 +12,8 @@ fn main() {
         println!("cargo:rustc-link-lib=static:+whole-archive=craft_documents");
         println!("cargo:rustc-link-lib=framework=UIKit");
         println!("cargo:rustc-link-lib=framework=UniformTypeIdentifiers");
+        for framework in ["PhotosUI", "Photos", "ImageIO"] {
+            println!("cargo:rustc-link-lib=framework={framework}");
+        }
     }
 }

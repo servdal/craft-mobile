@@ -1,0 +1,18 @@
+     Locking 16 packages to latest Rust 1.95 compatible versions
+    Updating async-recursion v1.1.1 -> v1.2.0
+ Downgrading aws-lc-rs v1.18.2 -> v1.18.1
+ Downgrading aws-lc-sys v0.46.0 -> v0.45.0
+      Adding cesu8 v1.1.0
+      Adding jni v0.21.1
+    Updating lazy_static v1.5.0 -> v1.5.1
+    Updating rustls v0.23.45 -> v0.23.46
+      Adding windows-sys v0.45.0
+      Adding windows-targets v0.42.2
+      Adding windows_aarch64_gnullvm v0.42.2
+      Adding windows_aarch64_msvc v0.42.2
+      Adding windows_i686_gnu v0.42.2
+      Adding windows_i686_msvc v0.42.2
+      Adding windows_x86_64_gnu v0.42.2
+      Adding windows_x86_64_gnullvm v0.42.2
+      Adding windows_x86_64_msvc v0.42.2
+note: pass `--verbose` to see 28 unchanged dependencies behind latest

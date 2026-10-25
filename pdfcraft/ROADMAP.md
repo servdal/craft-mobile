@@ -1,5 +1,7 @@
 # PdfCraft roadmap
 
+> Local mobile derivative update — 2026-10-25: ARM64 Android uses the shared mobile Files picker and excludes desktop clipboard/quit hooks. Android branding uses neutral PdfCraft/PDF text instead of the upstream trademark artwork, following docs/brand/LICENSE-brand.txt. This platform port does not change upstream PDF feature-parity scores or milestone estimates. Build/startup evidence is maintained in ../verification/ANDROID.md (relative to the PdfCraft folder).
+
 **Stage: alpha** · next: beta, ~25% (ready for real work 50% → 75%) and ~400–700 h away
 
 > **Last reviewed:** 2026-10-18 · **Last updated:** 2026-10-18 · **Change:** minor (M3, #3149: discard render demand after page geometry changes and check the GPU texture limit before upload; estimates unchanged)

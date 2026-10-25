@@ -1,8 +1,8 @@
-# Craft Mobile — native iOS ports
+# Craft Mobile — native iOS and Android ports
 
 Seven separate source projects based on the local Craft applications: PhotoCraft, VectorCraft, PdfCraft, WordCraft, GridCraft, DeckCraft and CADCraft. Original projects in the parent folder are untouched. Exact upstream source revisions are recorded in `BASES.json`. These copies start before the RoboDhan integration; no local AI server, Python bridge or model download is required.
 
-This is an initial native Rust/egui/wgpu mobile port, not a web wrapper. Editors retain their original document engines. `mobile-shell` includes a small original Objective-C UIKit scene delegate for current iOS lifecycle requirements and provides common touch-accessible file actions and `mobile-files` provides an asynchronous document browser confined to the application's Documents folder. Keep the complete folder structure: each project uses these two sibling libraries.
+This is an initial native Rust/egui/wgpu mobile port, not a web wrapper. Editors retain their original document engines. `mobile-shell` includes a small original Objective-C UIKit scene delegate for current iOS lifecycle requirements and provides common touch-accessible file actions and `mobile-files` provides an asynchronous document browser. `mobile-platform` supplies the native UIKit Files picker and security-scoped import/export integration. Keep the complete folder structure: each project uses these three sibling libraries.
 
 ## Build on macOS
 
@@ -52,13 +52,13 @@ python3 packaging/ios/deploy.py --device YOUR_DEVICE_UDID --profile /absolute/pa
 
 ## Documents and current limitations
 
-Use the iOS Files app, under On My iPhone / On My iPad → the application, to copy documents into its Documents folder. Then use Open inside the editor. Save As writes to that folder; export/share saved files through Files. Existing files require explicit overwrite confirmation in the shared browser. User data must be saved before terminating the app; full background recovery has not been implemented in the common mobile host.
+Tap **Open** in the common toolbar to browse the native iOS Files picker, including iCloud Drive and installed document providers. A selected document is copied into this app’s `Documents/Imports/<unique-id>/` before opening; the source is preserved. **Save As** writes into this app’s Documents folder. To save a copy elsewhere, tap **Export to Files**, select a saved local document, then choose its destination in the native picker. The app’s Documents folder is also visible in Files → On My iPhone / On My iPad → the application; a Projects subfolder is created on first launch. Existing files require explicit overwrite confirmation in the shared browser. User data must be saved before terminating the app; full background recovery has not been implemented in the common mobile host.
 
-The existing editor ribbons are retained and are best evaluated on iPad first. This is not yet a completed phone-specific interface. Desktop-only integration (printing, external processes, system clipboard, media playback, screen capture, some import/export dialogs) is not guaranteed on iOS. Use the common mobile toolbar for Open / Save As; synchronous desktop file pickers are disabled rather than repurposed for unrelated document actions. Multi-file dialogs currently select one document per operation. No standalone AI features are included. Simulator compile success alone does not establish complete editing or device compatibility.
+The existing editor ribbons are retained and are best evaluated on iPad first. This is not yet a completed phone-specific interface. Desktop-only integration (printing, external processes, system clipboard, media playback, screen capture, some import/export dialogs) is not guaranteed on iOS. Use the common mobile toolbar for Open / Save As / Export to Files; synchronous desktop file pickers are disabled rather than repurposed for unrelated document actions. Multi-file dialogs currently select one document per operation. No standalone AI features are included. Simulator compile success alone does not establish complete editing or device compatibility.
 
 ## Source and licensing
 
-Every application retains its upstream README, contribution rules, source notices, assets and licenses. See each project's `README-IOS.md` for its mobile entry point. New common host/file code is licensed MIT OR Apache-2.0. No system fonts, AI models or proprietary assets are added. Shared code originates in this mobile port; original engine dependencies retain their own licenses.
+Every application retains its upstream README, contribution rules, source notices, assets and licenses. See each project's `README-IOS.md` for its mobile entry point. New common host/file code is licensed MIT OR Apache-2.0. No system fonts or AI models are added. Launcher art derives from the user-supplied mascot; ownership and generation details are recorded in `assets/launcher/README.md` and each project’s attribution file. Shared code originates in this mobile port; original engine dependencies retain their own licenses.
 
 ## Lifecycle compatibility
 
@@ -86,3 +86,23 @@ cargo run --manifest-path tools/layer-gate/Cargo.toml
 ## Physical deployment completed (2026-10-25)
 
 PhotoCraft, VectorCraft, PdfCraft, WordCraft, GridCraft, DeckCraft and CADCraft were built for physical iOS, Apple-development-signed and installed successfully on the connected iPhone 14 Pro running iOS 27.0.1. GridCraft and PhotoCraft were launched and their running processes confirmed. Signed `.app` bundles and `.ipa` files are in `dist/device/`. See [the physical deployment report](verification/DEVICE-DEPLOYMENT.md) for precise validation scope. These remain development builds of the initial mobile ports.
+
+## Files permissions and launcher icons (0.1.1, build 2)
+
+Each project has a persistent `packaging/ios/entitlements.plist` template. The deployment helper expands its application/team identifiers using the selected provisioning profile, signs with those entitlements and saves the expanded plist alongside the device app. iOS access to external documents is granted through the system document picker and security-scoped URLs; macOS-only file-access entitlements do not grant this access on iOS. File sharing uses `UIFileSharingEnabled` and `LSSupportsOpeningDocumentsInPlace` in Info.plist. Directory selection remains inside the app’s Documents folder; multi-file requests currently select one document at a time.
+
+Seven distinct mascot poses are stored in `assets/launcher/`, with full generation prompts in `prompts.json`. The build helper compiles each AppIcon asset catalog using Xcode actool and merges its icon metadata into Info.plist. iOS applies the final icon mask. The version/build increment helps refresh cached launcher icons. See [Files and icon validation](verification/FILES-ICONS.md) for the tested scope.
+
+## Photos / Library (0.1.2, build 4)
+
+Tap **Photos** in the mobile toolbar to choose one image through the native iOS Photos picker. Only the selected image is delivered to the app; the picker does not request access to your entire library. PhotoCraft opens it as an image document. VectorCraft places it into the drawing; WordCraft, GridCraft and DeckCraft insert it using their existing picture command (an editable document/sheet/slide must be active). PdfCraft and CADCraft currently import the image into Documents/Imports only, with a status explaining that direct insertion is not implemented. Existing documents are not replaced in these editors.
+
+Imports are normalized to an orientation-correct PNG for editor compatibility, with a maximum side of 8192 pixels and a maximum encoded size of 64 MiB. Oversized dimensions are downsampled; this is a derived editing copy, not archival preservation of original metadata, RAW data or Live Photo/video components. The original Photos asset is preserved. Cloud-only assets may require network access through iOS.
+
+To save an image to the library, export/save a PNG, JPEG or HEIC file into the app's Documents folder, then tap **Save to Photos** and select it. The app requests **Add Photos Only** authorization when needed and reports a denied permission or save failure. This adds a new library asset; it does not overwrite existing photos. The signed app includes `NSPhotoLibraryAddUsageDescription` in Info.plist. No whole-library read permission or macOS-only Photos entitlement is requested. Save to Photos does not automatically render the active document; it saves the image file you explicitly select.
+
+See [Photos validation](verification/PHOTOS.md) for build/device verification and remaining interactive tests.
+
+## Android release App Bundles
+
+Android build and local signing instructions are in [packaging/android/README.md](packaging/android/README.md). The seven Android source wrappers are under `android-apps/`. Release AABs and optional installable APKs are written to `dist/android/`; private keystores and key.properties stay local and are excluded from Git. Android supports ARM64 devices with Android 10 or newer. See [Android verification](verification/ANDROID.md) for tested scope.

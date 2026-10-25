@@ -83,12 +83,12 @@ skrifa = "0.44"
 serde_json = { workspace = true }
 toml = "1"
 
-[target.'cfg(not(target_os = "ios"))'.dependencies]
+[target.'cfg(not(any(target_os = "ios", target_os = "android")))'.dependencies]
 craft-quit = { workspace = true, features = ["egui"] }
 rfd = { workspace = true }
 
-[target.'cfg(all(not(target_arch = "wasm32"), not(target_os = "ios")))'.dependencies]
+[target.'cfg(all(not(target_arch = "wasm32"), not(any(target_os = "ios", target_os = "android"))))'.dependencies]
 arboard = { version = "3.6", default-features = false, features = ["image-data"] }
 
-[target.'cfg(target_os = "ios")'.dependencies]
+[target.'cfg(any(target_os = "ios", target_os = "android"))'.dependencies]
 mobile-rfd = { package = "craft-mobile-files", path = "../../../mobile-files" }
