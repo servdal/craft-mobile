@@ -3,7 +3,7 @@
 from pathlib import Path
 import argparse,json,os,re,subprocess,time
 ROOT=Path(__file__).resolve().parents[2]
-NAMES={'gridcraft':'GridCraft','wordcraft':'WordCraft','deckcraft':'DeckCraft','cadcraft':'CADCraft','vectorcraft':'VectorCraft','photocraft':'PhotoCraft','pdfcraft':'PdfCraft'}
+NAMES={'gridcraft':'GridCraft','wordcraft':'WordCraft','deckcraft':'DeckCraft','cadcraft':'CADCraft','vectorcraft':'VectorCraft','photocraft':'PhotoCraft','pdfcraft':'PdfCraft','filmcraft':'FilmCraft','effectcraft':'EffectCraft','lightcraft':'LightCraft'}
 def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--serial',required=True);p.add_argument('projects',nargs='*',default=list(NAMES));args=p.parse_args()
     if not args.serial.startswith('emulator-'):p.error('Use a dedicated emulator; this startup test force-stops each tested application')

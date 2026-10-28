@@ -17,7 +17,8 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[2]
 NAMES = {'gridcraft': 'GridCraft', 'wordcraft': 'WordCraft', 'deckcraft': 'DeckCraft',
          'cadcraft': 'CADCraft', 'vectorcraft': 'VectorCraft', 'photocraft': 'PhotoCraft',
-         'pdfcraft': 'PdfCraft'}
+         'pdfcraft': 'PdfCraft', 'filmcraft': 'FilmCraft', 'effectcraft': 'EffectCraft',
+         'lightcraft': 'LightCraft'}
 
 
 def run(arguments, log=None):

@@ -46,6 +46,26 @@ pub fn request(
             answer: Box::new(answer),
         });
 }
+/// Present the platform's destination picker after an editor has saved a local copy.
+/// The editor never receives a path outside its sandbox; iOS/Android copy the finished
+/// document to the user-selected Files/Documents provider.
+pub fn export(path: PathBuf, answer: impl FnOnce(Option<PathBuf>) + Send + 'static) {
+    queue()
+        .lock()
+        .unwrap_or_else(PoisonError::into_inner)
+        .push_back(Request {
+            mode: Mode::Export,
+            name: path
+                .file_name()
+                .and_then(|name| name.to_str())
+                .unwrap_or("Document")
+                .into(),
+            title: "Export to Files".into(),
+            extensions: vec![],
+            initial: Some(path),
+            answer: Box::new(answer),
+        });
+}
 pub fn documents() -> Result<PathBuf, String> {
     if let Some(path) = craft_mobile_platform::documents_directory()? {
         std::fs::create_dir_all(&path).map_err(|error| error.to_string())?;
@@ -172,9 +192,17 @@ impl Browser {
                 self.error.clear();
                 self.replace = false;
                 #[cfg(any(target_os = "ios", target_os = "android"))]
-                if matches!(p.mode, Mode::Open | Mode::Photos) {
+                if matches!(p.mode, Mode::Open | Mode::Photos)
+                    || (p.mode == Mode::Export && p.initial.is_some())
+                {
                     let opened = if p.mode == Mode::Photos {
                         craft_mobile_platform::photos_open()
+                    } else if p.mode == Mode::Export {
+                        let Some(path) = p.initial.as_deref() else {
+                            self.error = "Missing document to export".into();
+                            return;
+                        };
+                        craft_mobile_platform::export(path)
                     } else {
                         craft_mobile_platform::open()
                     };

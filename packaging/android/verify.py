@@ -3,7 +3,7 @@
 from pathlib import Path
 import argparse,hashlib,json,os,re,struct,subprocess,zipfile
 ROOT=Path(__file__).resolve().parents[2]
-NAMES={'gridcraft':'GridCraft','wordcraft':'WordCraft','deckcraft':'DeckCraft','cadcraft':'CADCraft','vectorcraft':'VectorCraft','photocraft':'PhotoCraft','pdfcraft':'PdfCraft'}
+NAMES={'gridcraft':'GridCraft','wordcraft':'WordCraft','deckcraft':'DeckCraft','cadcraft':'CADCraft','vectorcraft':'VectorCraft','photocraft':'PhotoCraft','pdfcraft':'PdfCraft','filmcraft':'FilmCraft','effectcraft':'EffectCraft','lightcraft':'LightCraft'}
 def run(command):
     result=subprocess.run(command,capture_output=True,text=True)
     if result.returncode:raise RuntimeError(result.stderr or result.stdout)

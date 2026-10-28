@@ -21,8 +21,8 @@ android {
         applicationId 'com.duidev.craftmobile'
         minSdk 29
         targetSdk 36
-        versionCode 4
-        versionName '0.1.2'
+        versionCode 7
+        versionName '0.1.5'
         ndk { abiFilters 'arm64-v8a' }
     }
     signingConfigs {
@@ -52,6 +52,9 @@ android {
         gridcraft { dimension 'editor'; applicationIdSuffix '.gridcraft' }
         deckcraft { dimension 'editor'; applicationIdSuffix '.deckcraft' }
         cadcraft { dimension 'editor'; applicationIdSuffix '.cadcraft' }
+        filmcraft { dimension 'editor'; applicationIdSuffix '.filmcraft' }
+        effectcraft { dimension 'editor'; applicationIdSuffix '.effectcraft' }
+        lightcraft { dimension 'editor'; applicationIdSuffix '.lightcraft' }
     }
     packaging { jniLibs { useLegacyPackaging false } }
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }

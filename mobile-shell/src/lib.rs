@@ -19,7 +19,12 @@ pub fn pick(actions: &Actions, save: bool, name: &str) {
         move |path| {
             if let Some(path) = path {
                 q.lock().unwrap_or_else(PoisonError::into_inner).push((
-                    if save { "file.saveAs" } else { "file.open" }.into(),
+                    if save {
+                        "mobile.saveAsAndExport"
+                    } else {
+                        "file.open"
+                    }
+                    .into(),
                     serde_json::json!({"path":path.to_string_lossy()}),
                 ));
             }
@@ -46,6 +51,40 @@ impl<E: Editor> eframe::App for Mobile<E> {
         let actions =
             std::mem::take(&mut *self.actions.lock().unwrap_or_else(PoisonError::into_inner));
         for (id, p) in actions {
+            if id == "mobile.saveAsAndExport" {
+                let Some(path) = p["path"].as_str() else {
+                    self.status = "Missing save destination.".into();
+                    continue;
+                };
+                match guarded(|| self.editor.command("file.saveAs", p.clone())) {
+                    Ok(()) => {
+                        let actions = self.actions.clone();
+                        files::export(path.into(), move |result| {
+                            let (id, value) = if result.is_some() {
+                                ("mobile.exported", serde_json::json!({}))
+                            } else {
+                                ("mobile.exportCancelled", serde_json::json!({}))
+                            };
+                            actions
+                                .lock()
+                                .unwrap_or_else(PoisonError::into_inner)
+                                .push((id.into(), value));
+                        });
+                        self.status =
+                            "Saved locally. Choose a public Files folder for the copy.".into();
+                    }
+                    Err(error) => self.status = error,
+                }
+                continue;
+            }
+            if id == "mobile.exported" {
+                self.status = "Saved to the selected Files folder.".into();
+                continue;
+            }
+            if id == "mobile.exportCancelled" {
+                self.status = "Saved inside the app; export to Files was cancelled.".into();
+                continue;
+            }
             if id == "mobile.photosSaved" {
                 self.status = "Image saved to Photos.".into();
                 continue;
@@ -86,23 +125,28 @@ impl<E: Editor> eframe::App for Mobile<E> {
         );
         content.set_clip_rect(bounds);
         let ui = &mut content;
-        let naturally_compact = mobile_ui::compact_size(
-            bounds.size(),
-            false,
-            mobile_ui::is_phone(ui.ctx()),
-        );
+        let naturally_compact =
+            mobile_ui::compact_size(bounds.size(), false, mobile_ui::is_phone(ui.ctx()));
         let compact = naturally_compact && !self.show_desktop_tools;
         mobile_ui::set_phone(ui.ctx(), compact);
         egui::Panel::top("mobile-file-actions").show(ui, |ui| {
             if compact {
                 ui.horizontal(|ui| {
                     ui.strong(self.title.trim_end_matches(" Mobile"));
-                    if ui.add_sized([56.0, mobile_ui::TOUCH_HEIGHT], egui::Button::new("New")).clicked() {
-                        if let Err(e) = guarded(|| self.editor.command("file.new", serde_json::json!({}))) {
+                    if ui
+                        .add_sized([56.0, mobile_ui::TOUCH_HEIGHT], egui::Button::new("New"))
+                        .clicked()
+                    {
+                        if let Err(e) =
+                            guarded(|| self.editor.command("file.new", serde_json::json!({})))
+                        {
                             self.status = e;
                         }
                     }
-                    if ui.add_sized([64.0, mobile_ui::TOUCH_HEIGHT], egui::Button::new("Open")).clicked() {
+                    if ui
+                        .add_sized([64.0, mobile_ui::TOUCH_HEIGHT], egui::Button::new("Open"))
+                        .clicked()
+                    {
                         pick(&self.actions, false, "");
                     }
                     ui.menu_button("Menu", |ui| {
@@ -110,10 +154,13 @@ impl<E: Editor> eframe::App for Mobile<E> {
                             let actions = self.actions.clone();
                             files::request(files::Mode::Photos, "", move |path| {
                                 if let Some(path) = path {
-                                    actions.lock().unwrap_or_else(PoisonError::into_inner).push((
-                                        "mobile.photoImported".into(),
-                                        serde_json::json!({"path":path.to_string_lossy()}),
-                                    ));
+                                    actions
+                                        .lock()
+                                        .unwrap_or_else(PoisonError::into_inner)
+                                        .push((
+                                            "mobile.photoImported".into(),
+                                            serde_json::json!({"path":path.to_string_lossy()}),
+                                        ));
                                 }
                             });
                             ui.close();
@@ -122,7 +169,10 @@ impl<E: Editor> eframe::App for Mobile<E> {
                             let actions = self.actions.clone();
                             files::request(files::Mode::SavePhotos, "", move |path| {
                                 if path.is_some() {
-                                    actions.lock().unwrap_or_else(PoisonError::into_inner).push(("mobile.photosSaved".into(), serde_json::json!({})));
+                                    actions
+                                        .lock()
+                                        .unwrap_or_else(PoisonError::into_inner)
+                                        .push(("mobile.photosSaved".into(), serde_json::json!({})));
                                 }
                             });
                             ui.close();
@@ -146,49 +196,49 @@ impl<E: Editor> eframe::App for Mobile<E> {
                 ui.horizontal_wrapped(|ui| {
                     ui.strong(self.title);
                     if ui.button("New").clicked() {
-                    if let Err(e) =
-                        guarded(|| self.editor.command("file.new", serde_json::json!({})))
-                    {
-                        self.status = e;
+                        if let Err(e) =
+                            guarded(|| self.editor.command("file.new", serde_json::json!({})))
+                        {
+                            self.status = e;
+                        }
                     }
-                }
-                if ui.button("Open").clicked() {
-                    pick(&self.actions, false, "");
-                }
-                if ui.button("Photos").clicked() {
-                    let actions = self.actions.clone();
-                    files::request(files::Mode::Photos, "", move |path| {
-                        if let Some(path) = path {
-                            actions
-                                .lock()
-                                .unwrap_or_else(PoisonError::into_inner)
-                                .push((
-                                    "mobile.photoImported".into(),
-                                    serde_json::json!({"path":path.to_string_lossy()}),
-                                ));
-                        }
-                    });
-                }
-                if ui.button("Save to Photos").clicked() {
-                    let actions = self.actions.clone();
-                    files::request(files::Mode::SavePhotos, "", move |path| {
-                        if path.is_some() {
-                            actions
-                                .lock()
-                                .unwrap_or_else(PoisonError::into_inner)
-                                .push(("mobile.photosSaved".into(), serde_json::json!({})));
-                        }
-                    });
-                }
-                if ui.button("Export to Files").clicked() {
-                    files::request(files::Mode::Export, "", |_| {});
-                }
-                if ui.button("Save As").clicked() {
-                    pick(&self.actions, true, &format!("Untitled.{}", self.extension));
-                }
-                if naturally_compact && ui.button("Phone layout").clicked() {
-                    self.show_desktop_tools = false;
-                }
+                    if ui.button("Open").clicked() {
+                        pick(&self.actions, false, "");
+                    }
+                    if ui.button("Photos").clicked() {
+                        let actions = self.actions.clone();
+                        files::request(files::Mode::Photos, "", move |path| {
+                            if let Some(path) = path {
+                                actions
+                                    .lock()
+                                    .unwrap_or_else(PoisonError::into_inner)
+                                    .push((
+                                        "mobile.photoImported".into(),
+                                        serde_json::json!({"path":path.to_string_lossy()}),
+                                    ));
+                            }
+                        });
+                    }
+                    if ui.button("Save to Photos").clicked() {
+                        let actions = self.actions.clone();
+                        files::request(files::Mode::SavePhotos, "", move |path| {
+                            if path.is_some() {
+                                actions
+                                    .lock()
+                                    .unwrap_or_else(PoisonError::into_inner)
+                                    .push(("mobile.photosSaved".into(), serde_json::json!({})));
+                            }
+                        });
+                    }
+                    if ui.button("Export to Files").clicked() {
+                        files::request(files::Mode::Export, "", |_| {});
+                    }
+                    if ui.button("Save As").clicked() {
+                        pick(&self.actions, true, &format!("Untitled.{}", self.extension));
+                    }
+                    if naturally_compact && ui.button("Phone layout").clicked() {
+                        self.show_desktop_tools = false;
+                    }
                 });
             }
             if !self.status.is_empty() {

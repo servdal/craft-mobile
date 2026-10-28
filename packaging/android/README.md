@@ -2,6 +2,8 @@
 
 Native Rust/egui/wgpu Android applications based on the same mobile editors as iOS. Each app has a separate application ID and mascot icon. No RoboDhan service, Python bridge or model download is needed on Android. Build scripts run on the Mac; the installed apps contain native Rust libraries and Android platform integration.
 
+The build supports PhotoCraft, VectorCraft, PdfCraft, WordCraft, GridCraft, DeckCraft, CADCraft, FilmCraft, EffectCraft and LightCraft.
+
 ## Requirements on macOS
 
 - Rust stable 1.95+ and `rustup target add aarch64-linux-android`.
@@ -43,7 +45,7 @@ To install an APK on a connected Android device with USB debugging enabled:
 
 Open uses the Android system document picker. Photos uses the platform photo picker on Android 13+ and an image chooser on Android 10–12. Selected documents are copied into the app’s private Documents/Imports folder; originals are preserved. Photo imports are normalized to an orientation-correct PNG, downsampled to at most 8192 pixels per side, and rejected above 64 MiB encoded. PhotoCraft opens the image; VectorCraft places it; WordCraft/GridCraft/DeckCraft use their existing picture insertion command. CADCraft/PdfCraft currently stage the photo only.
 
-Save As writes locally. Export to Files selects a local saved document and copies it to a destination chosen through ACTION_CREATE_DOCUMENT. Save to Photos adds a selected saved PNG/JPEG/HEIC image through MediaStore to Pictures/CraftMobile. Broad storage or entire-library read permissions are not requested. Cloud document providers may need network access through Android. Full archival photo metadata/RAW/Live Photo preservation is not claimed.
+Save As writes a safe local copy, then opens Android's destination picker so the finished document can be saved to Documents, Downloads, a cloud provider, or another user-selected public folder through `ACTION_CREATE_DOCUMENT`. Export to Files selects an already-saved local document and copies it to a destination chosen through the same picker. Save to Photos adds a selected saved PNG/JPEG/HEIC image through MediaStore to Pictures/CraftMobile. Broad storage or entire-library read permissions are not requested. Cloud document providers may need network access through Android. Full archival photo metadata/RAW/Live Photo preservation is not claimed.
 
 The existing editor ribbons remain broad desktop-style layouts. These are initial mobile ports; complete phone layout, editing, all file formats, rotation and background recovery require further device testing. Read ../../verification/ANDROID.md for exact validation evidence and limits.
 
